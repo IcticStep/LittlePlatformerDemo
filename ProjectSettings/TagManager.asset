@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2351352113
+    locked: 0
+  - name: Middle
+    uniqueID: 2586388547
+    locked: 0
+  - name: BehindWorldObjects
+    uniqueID: 4053058209
+    locked: 0
+  - name: World
+    uniqueID: 1007739793
+    locked: 0
