@@ -3086,7 +3086,7 @@ GameObject:
   - component: {fileID: 940974826}
   - component: {fileID: 940974825}
   - component: {fileID: 940974827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3999,7 +3999,7 @@ GameObject:
   - component: {fileID: 1462561257}
   - component: {fileID: 1462561256}
   - component: {fileID: 1462561258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainLand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
