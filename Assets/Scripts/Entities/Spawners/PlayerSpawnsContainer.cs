@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Triggers;
 using UnityEngine;
 
-namespace Spawners
+namespace Entities.Spawners
 {
     public class PlayerSpawnsContainer : MonoBehaviour
     {

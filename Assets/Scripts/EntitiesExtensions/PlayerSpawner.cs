@@ -1,7 +1,8 @@
 using Entities;
+using Entities.Spawners;
 using UnityEngine;
 
-namespace Spawners
+namespace EntitiesExtensions
 {
     [RequireComponent(typeof(Player))]
     public class PlayerSpawner : MonoBehaviour

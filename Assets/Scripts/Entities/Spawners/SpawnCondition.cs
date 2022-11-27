@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Spawners
+namespace Entities.Spawners
 {
     [Serializable]
     public class SpawnCondition
