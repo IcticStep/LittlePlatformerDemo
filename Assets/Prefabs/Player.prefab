@@ -181,6 +181,7 @@ MonoBehaviour:
   _groundCheckerEndPoint: {fileID: 6545570082223781717}
   _speed: 5
   _jumpHeight: 7
+  _groundCastRadius: 0.5
 --- !u!114 &7212586825820188929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +211,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.078799844, y: -0.37321103}
-  m_Size: {x: 1.0728884, y: 1.1890514}
+  m_Offset: {x: 0, y: -0.37321103}
+  m_Size: {x: 0.67, y: 1.19}
   m_Direction: 0
 --- !u!1 &2902593782629477396
 GameObject:

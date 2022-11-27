@@ -9,6 +9,7 @@ namespace Movers
         [SerializeField] private Transform _groundCheckerEndPoint;
         [SerializeField] private float _speed = 5;
         [SerializeField] private float _jumpHeight = 100;
+        [SerializeField] private float _groundCastRadius = 0.5f;
         
         private Rigidbody2D _rigidbody;
         
@@ -23,6 +24,9 @@ namespace Movers
         public override void MoveHorizontally(float ratio)
         {
             _rigidbody.velocity = new Vector2(_speed * ratio, _rigidbody.velocity.y);
+
+            if (Mathf.Abs(ratio) <= float.Epsilon)
+                return;
             SignalMovingX();
         }
 
@@ -43,7 +47,7 @@ namespace Movers
 
         private bool IsOnGround()
         {
-            var hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.down, _airJumpHeight, _groundMask);
+            var hit = Physics2D.CircleCast(transform.position, _groundCastRadius, Vector2.down, _airJumpHeight, _groundMask);
             return hit.collider is not null;
         }
 
