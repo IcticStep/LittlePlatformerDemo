@@ -46,6 +46,8 @@ namespace Entities
             UpdateView();
         }
 
+        public void SetMirrored(bool mirrored) => _spriteRenderer.flipX = mirrored;
+
         private void EnableInput()
         {
             _input.Enable();
@@ -88,9 +90,9 @@ namespace Entities
         private void FlipSprite(Vector2 speed)
         {
             if (speed.x < -_flipSpeed)
-                _spriteRenderer.flipX = true;
+                SetMirrored(true);
             else if (speed.x > _flipSpeed)
-                _spriteRenderer.flipX = false;
+                SetMirrored(false);
         }
 
         private void SetAnimatorSpeeds(Vector2 speed)

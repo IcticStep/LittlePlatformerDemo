@@ -27,6 +27,7 @@ namespace Movers
 
             if (Mathf.Abs(ratio) <= float.Epsilon)
                 return;
+            
             SignalMovingX();
         }
 
