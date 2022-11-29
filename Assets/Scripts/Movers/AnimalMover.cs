@@ -8,7 +8,7 @@ namespace Movers
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private Transform _groundCheckerEndPoint;
         [SerializeField] private float _speed = 5;
-        [SerializeField] private float _jumpHeight = 100;
+        [SerializeField] private float _jumpVelocity = 7;
         [SerializeField] private float _groundCastRadius = 0.5f;
         
         private Rigidbody2D _rigidbody;
@@ -42,7 +42,7 @@ namespace Movers
             if(!IsOnGround())
                 return;
 
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpHeight);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
             SignalMovingY();
         }
 

@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDirection: -1
   _destroyingDelay: 3
+  _minimumCollidedRotation: 5

@@ -45,9 +45,10 @@ GameObject:
   - component: {fileID: 8238591791414900628}
   - component: {fileID: 5417656130678865371}
   - component: {fileID: 8063006657919568645}
-  - component: {fileID: 7212586825820188929}
-  - component: {fileID: 7452951592782780953}
   - component: {fileID: 2178795451174238227}
+  - component: {fileID: 7452951592782780953}
+  - component: {fileID: 170049367}
+  - component: {fileID: 7212586825820188929}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -198,8 +199,45 @@ MonoBehaviour:
     m_Bits: 64
   _groundCheckerEndPoint: {fileID: 6545570082223781717}
   _speed: 5
-  _jumpHeight: 7
+  _jumpVelocity: 7
   _groundCastRadius: 0.5
+--- !u!114 &2178795451174238227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512740614997977972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b562968a28c41424cb5301648472a82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7452951592782780953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512740614997977972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca4249d136795a4e832ce4f0e6f1f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _topEdgeLiftUp: 2.5
+--- !u!114 &170049367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512740614997977972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02214f962fa48aa998cf0ee1e11ba05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7212586825820188929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,31 +254,6 @@ MonoBehaviour:
   _jumpDust: {fileID: 8993808203649015521, guid: 693c900474593ef429b52e6d49703a3b, type: 3}
   _dustSpawn: {fileID: 2902593782629477396}
   _flipSpeed: 0.1
---- !u!114 &7452951592782780953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512740614997977972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ca4249d136795a4e832ce4f0e6f1f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnsContainer: {fileID: 0}
---- !u!114 &2178795451174238227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512740614997977972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b562968a28c41424cb5301648472a82e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2902593782629477396
 GameObject:
   m_ObjectHideFlags: 0

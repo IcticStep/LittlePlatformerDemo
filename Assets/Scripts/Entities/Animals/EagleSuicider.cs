@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Movers;
 using UnityEngine;
@@ -12,13 +13,15 @@ namespace Entities.Animals
     {
         [SerializeField] private float _startDirection = -1f;
         [SerializeField] private float _destroyingDelay = 3f;
+        [SerializeField] private float _minimumCollidedRotation = 1f;
 
         private static readonly int _fallingAnimatorVar = Animator.StringToHash("Hurting");
-        
+
         private Rigidbody2D _rigidbody;
         private AbstractMover _mover;
         private Collider2D _collider;
         private Animator _animator;
+        private Sequence _selfDestroying;
         private float _startGravityScale;
 
         private void Awake()
@@ -37,7 +40,12 @@ namespace Entities.Animals
             _mover.MoveHorizontally(_startDirection);
         }
 
-        private void OnCollisionEnter2D(Collision2D col)
+        private void OnDestroy()
+        {
+            _selfDestroying.Kill();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             StopFlying();
             StartFalling();
@@ -54,7 +62,7 @@ namespace Entities.Animals
 
         private void StopFlying() => _mover.MoveHorizontally(0f);
 
-        private void DestroySelfDelayed() => DOTween.Sequence()
+        private void DestroySelfDelayed() => _selfDestroying = DOTween.Sequence()
                 .AppendInterval(_destroyingDelay)
                 .AppendCallback(() => Destroy(gameObject));
     }

@@ -1,7 +1,7 @@
 using Entities.Collectables;
 using UnityEngine;
 
-namespace EntitiesExtensions
+namespace EntitiesFunctions
 {
     [RequireComponent(typeof(Collider2D))]
     public class Collector : MonoBehaviour
