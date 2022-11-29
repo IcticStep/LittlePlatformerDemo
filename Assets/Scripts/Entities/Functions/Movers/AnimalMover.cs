@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace Movers
+namespace EntitiesFunctions.Movers
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class AnimalMover : AbstractMover
+    public class AnimalMover : Mover
     {
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private Transform _groundCheckerEndPoint;
@@ -13,12 +13,12 @@ namespace Movers
         
         private Rigidbody2D _rigidbody;
         
-        private float _airJumpHeight;
+        private float _distanceGroundContact;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _airJumpHeight = Mathf.Abs(_groundCheckerEndPoint.position.y - transform.position.y);
+            _distanceGroundContact = Mathf.Abs(_groundCheckerEndPoint.position.y - transform.position.y);
         }
 
         public override void MoveHorizontally(float ratio)
@@ -33,7 +33,7 @@ namespace Movers
 
         public override void MoveVertically(float ratio)
         {
-            if (ratio < 0)
+            if (ratio <= 0)
             {
                 Debug.LogError("Can't jump down!", this);
                 return;
@@ -48,7 +48,7 @@ namespace Movers
 
         private bool IsOnGround()
         {
-            var hit = Physics2D.CircleCast(transform.position, _groundCastRadius, Vector2.down, _airJumpHeight, _groundMask);
+            var hit = Physics2D.CircleCast(transform.position, _groundCastRadius, Vector2.down, _distanceGroundContact, _groundMask);
             return hit.collider is not null;
         }
 

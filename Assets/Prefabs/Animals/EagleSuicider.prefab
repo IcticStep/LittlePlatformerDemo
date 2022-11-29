@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 3952767144132924970}
   - component: {fileID: 5537698699134728382}
   - component: {fileID: 8550852924456608588}
+  - component: {fileID: 2479317172049725173}
+  - component: {fileID: 1081359244423356859}
+  - component: {fileID: 6520673255540596108}
   m_Layer: 8
   m_Name: EagleSuicider
   m_TagString: Untagged
@@ -171,6 +174,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd509509f0fa4164da2a8dc0ba6550c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startDirection: -1
   _destroyingDelay: 3
-  _minimumCollidedRotation: 5
+--- !u!114 &2479317172049725173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537698699134728378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb79b8e46ca9b7d4c898bfe879d095ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1081359244423356859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537698699134728378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd95c9dd2767457a856f06218f235c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6520673255540596108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537698699134728378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efb8dae89271554da44e54c5d3b5475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mover: {fileID: 5537698699134728382}
+  _direction: -1

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Entities.Collectables
+namespace Collectables
 {
     public class CollectablesContainer : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using ClassExtensions;
 using Entities.Data;
 using UnityEngine;
 
-namespace EntitiesFunctions
+namespace Entities.Functions
 {
     [RequireComponent(typeof(Collider2D))]
     public class OffCameraDetector : MonoBehaviour

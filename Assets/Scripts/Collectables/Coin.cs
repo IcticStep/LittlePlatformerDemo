@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using DG.Tweening;
+﻿using DG.Tweening;
+using UnityEngine;
 
-namespace Entities.Collectables
+namespace Collectables
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class Coin : CollectableItem
@@ -12,10 +12,7 @@ namespace Entities.Collectables
         
         private SpriteRenderer _spriteRenderer;
 
-        private void Awake()
-        {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        private void Awake() => _spriteRenderer = GetComponent<SpriteRenderer>();
 
         public override void Collect() => FlyToDestroy();
 

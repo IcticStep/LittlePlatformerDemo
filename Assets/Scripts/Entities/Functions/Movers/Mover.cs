@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Movers
+namespace EntitiesFunctions.Movers
 {
-    public abstract class AbstractMover : MonoBehaviour
+    public abstract class Mover : MonoBehaviour
     {
-        public event Action MovedX;
-        public event Action MovedY;
+        public event Action OnMoveX;
+        public event Action OnMoveY;
         
         public abstract void MoveHorizontally(float ratio);
         public abstract void MoveVertically(float ratio);
@@ -18,7 +18,7 @@ namespace Movers
             MoveVertically(ratios.y);
         }
 
-        protected void SignalMovingX() => MovedX?.Invoke();
-        protected void SignalMovingY() => MovedY?.Invoke();
+        protected void SignalMovingX() => OnMoveX?.Invoke();
+        protected void SignalMovingY() => OnMoveY?.Invoke();
     }
 }

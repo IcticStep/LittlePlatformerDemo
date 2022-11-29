@@ -1,10 +1,10 @@
 using ClassExtensions;
-using Entities;
+using Entities.System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Edge = Entities.Data.Edge;
 
-namespace EntitiesFunctions
+namespace Entities.Functions
 {
     public class SpawnPlacer : MonoBehaviour
     {

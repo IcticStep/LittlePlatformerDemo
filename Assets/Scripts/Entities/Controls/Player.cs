@@ -1,15 +1,15 @@
-using Movers;
+using EntitiesFunctions.Movers;
 using UnityEngine;
 using VFX;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace Entities
+namespace Entities.Controls
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
     public class Player : MonoBehaviour
     {
-        [SerializeField] private AbstractMover _mover;
+        [SerializeField] private Mover _mover;
         [SerializeField] private SimpleVFX _jumpDust;
         [SerializeField] private GameObject _dustSpawn;
         [SerializeField] private float _flipSpeed = 0.1f;
@@ -31,13 +31,13 @@ namespace Entities
         private void OnEnable()
         {
             EnableInput();
-            _mover.MovedY += ThrowDust;
+            _mover.OnMoveY += ThrowDust;
         }
 
         private void OnDisable()
         {
             DisableInput();
-            _mover.MovedY -= ThrowDust;
+            _mover.OnMoveY -= ThrowDust;
         }
 
         private void FixedUpdate()

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Entities.Data;
+using Entities.Functions;
 using EntitiesFunctions;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Entities
+namespace Entities.System
 {
     public class LevelSwitcher : MonoBehaviour
     {

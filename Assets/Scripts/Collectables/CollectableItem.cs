@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Entities.Collectables
+namespace Collectables
 {
     public abstract class CollectableItem : MonoBehaviour
     {
