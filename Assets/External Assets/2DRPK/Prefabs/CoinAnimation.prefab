@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9500000}
   - component: {fileID: 2763664774199122038}
   - component: {fileID: 30346362173131416}
+  - component: {fileID: 7738000021413807782}
   m_Layer: 0
   m_Name: CoinAnimation
   m_TagString: Untagged
@@ -133,6 +134,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dad8365c0be648c49fd2e7960a10782f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7738000021413807782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8cea7d70d14b74a2371a7014512bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _flyingUpDistance: 2

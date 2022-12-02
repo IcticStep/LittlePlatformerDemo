@@ -1974,10 +1974,6 @@ PrefabInstance:
       propertyPath: _spawnsContainer
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8063006657919568645, guid: dbab7bdb2d57ca8418dceaacca8c7db8, type: 3}
-      propertyPath: _groundCastRadius
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbab7bdb2d57ca8418dceaacca8c7db8, type: 3}
 --- !u!114 &1838440420 stripped

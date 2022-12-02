@@ -24,7 +24,7 @@ namespace Entities.Viewers
         /// Runs in Awake of Viewer.
         /// </summary>
         protected virtual void DoAdditionalInitialization() { }
-        
-        protected abstract void ShowHurt();
+
+        protected virtual void ShowHurt() { }
     }
 }
