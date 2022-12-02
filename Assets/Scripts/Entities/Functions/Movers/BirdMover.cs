@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EntitiesFunctions.Movers
+namespace Entities.Functions.Movers
 {
     public class BirdMover : Mover
     {

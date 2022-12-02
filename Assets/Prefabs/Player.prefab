@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8063006657919568645}
   - component: {fileID: 2178795451174238227}
   - component: {fileID: 7452951592782780953}
+  - component: {fileID: 1923674932152405923}
   - component: {fileID: 170049367}
   - component: {fileID: 7212586825820188929}
   m_Layer: 3
@@ -158,7 +159,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.37321103}
+  m_Offset: {x: 0, y: -0.38}
   m_Size: {x: 0.67, y: 1.19}
   m_Direction: 0
 --- !u!50 &5417656130678865371
@@ -200,7 +201,7 @@ MonoBehaviour:
   _groundCheckerEndPoint: {fileID: 6545570082223781717}
   _speed: 5
   _jumpVelocity: 7
-  _groundCastRadius: 0.5
+  _groundCastRadius: 0.7
 --- !u!114 &2178795451174238227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +227,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _topEdgeLiftUp: 2.5
+--- !u!114 &1923674932152405923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512740614997977972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65abdf844571470baa7361c83bed2011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpDust: {fileID: 8993808203649015521, guid: 693c900474593ef429b52e6d49703a3b, type: 3}
+  _dustSpawn: {fileID: 2902593782629477396}
+  _minSpeedToFlip: 0.1
 --- !u!114 &170049367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,10 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99ca054e7ed9a649a7d90d03eab001c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mover: {fileID: 8063006657919568645}
-  _jumpDust: {fileID: 8993808203649015521, guid: 693c900474593ef429b52e6d49703a3b, type: 3}
-  _dustSpawn: {fileID: 2902593782629477396}
-  _flipSpeed: 0.1
 --- !u!1 &2902593782629477396
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EntitiesFunctions.Movers
+namespace Entities.Functions.Movers
 {
     public abstract class Mover : MonoBehaviour
     {

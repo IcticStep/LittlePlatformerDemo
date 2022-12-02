@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EntitiesFunctions.Movers
+namespace Entities.Functions.Movers
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class AnimalMover : Mover

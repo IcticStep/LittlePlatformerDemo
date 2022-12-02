@@ -18,16 +18,16 @@ namespace Entities.Functions
 
         private void OnEnable()
         {
-            LevelSwitcher.OnLevelFinish += SaveFinishPosition;
+            LevelSwitcher.OnLevelSwitch += SaveSwitchPosition;
             LevelSwitcher.OnLevelStart += SetSpawn;
         }
         private void OnDisable()
         {
-            LevelSwitcher.OnLevelFinish -= SaveFinishPosition;
+            LevelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
             LevelSwitcher.OnLevelStart -= SetSpawn;
         }
 
-        private void SaveFinishPosition() => _finishedPosition = transform.position;
+        private void SaveSwitchPosition() => _finishedPosition = transform.position;
 
         private void SetSpawn()
         {

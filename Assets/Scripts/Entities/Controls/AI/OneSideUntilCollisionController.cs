@@ -1,7 +1,5 @@
-using System;
 using Entities.Functions;
-using EntitiesFunctions;
-using EntitiesFunctions.Movers;
+using Entities.Functions.Movers;
 using UnityEngine;
 
 namespace Entities.Controls.AI

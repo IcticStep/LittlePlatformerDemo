@@ -4,7 +4,6 @@ using System.Linq;
 using DG.Tweening;
 using Entities.Data;
 using Entities.Functions;
-using EntitiesFunctions;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +21,7 @@ namespace Entities.System
         public static (string Name, Edge? CrossedEdge)? PreviousLevel { get; private set; }
 
         public static event Action OnLevelStart;
-        public static event Action OnLevelFinish;
+        public static event Action OnLevelSwitch;
         public static event Action OnLevelRestart;
 
         private void Start()
@@ -62,12 +61,12 @@ namespace Entities.System
             }
         }
 
-        private void GoToNextLevel(string level, Edge crossed) =>
+        private void GoToNextLevel(string level, Edge? crossed) =>
             DOTween.Sequence()
                 .InsertCallback(_nextLevelDelay, () =>
                 {
                     SetPreviousLevelData(crossed);
-                    OnLevelFinish?.Invoke();
+                    OnLevelSwitch?.Invoke();
                     SceneManager.LoadScene(level);
                 });
 

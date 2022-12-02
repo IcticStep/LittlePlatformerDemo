@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Entities.Behaviours
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class EntityBehaviour : MonoBehaviour
     {
         public event Action OnDie;
 

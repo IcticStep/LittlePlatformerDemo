@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Entities.Functions;
-using EntitiesFunctions;
 using UnityEngine;
 
 namespace Entities.Behaviours
@@ -8,7 +7,7 @@ namespace Entities.Behaviours
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(CollisionDetector))]
-    public class EagleSuicider : Enemy
+    public class EagleSuicider : EntityBehaviour
     {
         [SerializeField] private float _destroyingDelay = 3f;
 
