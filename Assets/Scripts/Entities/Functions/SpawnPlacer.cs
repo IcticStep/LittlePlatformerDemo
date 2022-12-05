@@ -8,6 +8,7 @@ namespace Entities.Functions
 {
     public class SpawnPlacer : MonoBehaviour
     {
+        [SerializeField] private float _basicEdgeLift = 1f;
         [SerializeField] private float _topEdgeLiftUp = 1f;
         
         private static Vector2 _finishedPosition;
@@ -43,8 +44,9 @@ namespace Entities.Functions
 
         private Vector2 GetGoalCoordinated() => _previousLevel.Value.CrossedEdge switch
             {
-                Edge.Left or Edge.Right => _finishedPosition.ReflectX(),
-                Edge.Bottom => _finishedPosition.ReflectY(),
+                Edge.Left => _finishedPosition.ReflectX().WithAdjustedX(-_basicEdgeLift),
+                Edge.Right => _finishedPosition.ReflectX().WithAdjustedX(_basicEdgeLift),
+                Edge.Bottom => _finishedPosition.ReflectY().WithAdjustedY(-_basicEdgeLift),
                 Edge.Top => _finishedPosition.ReflectY() + new Vector2(0, _topEdgeLiftUp),
                 _ => _finishedPosition
             };
