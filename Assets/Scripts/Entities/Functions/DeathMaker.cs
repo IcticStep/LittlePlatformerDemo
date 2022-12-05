@@ -56,8 +56,10 @@ namespace Entities.Functions
             OnDie?.Invoke();
         }
 
-        private bool OtherIsDead(Collider2D otherCollider) 
-            => otherCollider.TryGetComponent<DeathMaker>(out var component) && component.Died;
+        private bool OtherIsDead(Collider2D otherCollider)
+        {
+            return otherCollider.gameObject.TryGetComponent<DeathMaker>(out var component) && component.Died;
+        }
 
         private void AdjustCollisionJump()
         {
