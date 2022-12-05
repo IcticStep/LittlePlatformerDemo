@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2479317172049725173}
   - component: {fileID: 1081359244423356859}
   - component: {fileID: 6520673255540596108}
+  - component: {fileID: 8745872553009111868}
   m_Layer: 8
   m_Name: EagleSuicider
   m_TagString: Untagged
@@ -122,7 +123,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.18, y: -0.37}
@@ -143,7 +144,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -174,7 +175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd509509f0fa4164da2a8dc0ba6550c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyingDelay: 3
+  _weakPoints:
+  - {fileID: 2479317172049725173}
+  _destroyingSecondsDelay: 10
+  _applyKillingTorque: 1
+  _onKilledTorque: 2
+  _makeJump: 1
+  _jumpForce: 3
 --- !u!114 &2479317172049725173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +203,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5537698699134728378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd95c9dd2767457a856f06218f235c97, type: 3}
+  m_Script: {fileID: 11500000, guid: eebcf1125b034541a8d8c1bd5c70f0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6520673255540596108
@@ -212,4 +219,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 5537698699134728382}
-  _direction: -1
+  _collisionDetector: {fileID: 2479317172049725173}
+  _currentDirection: -1
+--- !u!114 &8745872553009111868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537698699134728378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7b859a7459431da0499e8c6fdc11a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpeedToFlip: 0.1
+  _invertFlipping: 1

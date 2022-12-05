@@ -1,5 +1,4 @@
-﻿using Entities.Behaviours;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Entities.Viewers
 {
@@ -8,8 +7,8 @@ namespace Entities.Viewers
     {
         private static readonly int _fallingAnimatorVar = Animator.StringToHash("Hurting");
         
-        private void OnEnable() => Behaviour.OnDie += ShowHurt;
-        private void OnDisable() => Behaviour.OnDie -= ShowHurt;
+        private void OnEnable() => DeathMaker.OnDie += ShowHurt;
+        private void OnDisable() => DeathMaker.OnDie -= ShowHurt;
         
         protected override void ShowHurt() => Animator.SetBool(_fallingAnimatorVar, true);
     }

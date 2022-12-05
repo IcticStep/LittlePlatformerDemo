@@ -10,45 +10,38 @@ namespace Entities.Viewers
     {
         [SerializeField] private SimpleVFX _jumpDust;
         [SerializeField] private GameObject _dustSpawn;
-        [SerializeField] private float _minSpeedToFlip = 0.1f;
-        
+
         private Mover _mover;
         
         private static class AnimatorHashes
         {
             public static readonly int SpeedX = Animator.StringToHash("AbsSpeedX");
             public static readonly int SpeedY = Animator.StringToHash("SpeedY");
+            public static readonly int TakingDamage = Animator.StringToHash("TakingDamage");
         }
-        
-        private void OnEnable() => _mover.OnMoveY += ThrowDust;
-        private void OnDisable() => _mover.OnMoveY -= ThrowDust;
-        private void FixedUpdate() => UpdateView();
 
-        protected override void DoAdditionalInitialization() => _mover = GetComponent<Mover>();
-        
-        protected override void ShowHurt()
+        private void OnEnable()
         {
-            throw new NotImplementedException();
+            _mover.OnMoveY += ThrowDust;
+            DeathMaker.OnDie += ShowHurt;
         }
 
-        private void SetMirrored(bool mirrored) => SpriteRenderer.flipX = mirrored;
-        private void ThrowDust() => Instantiate(_jumpDust, _dustSpawn.transform.position, Quaternion.identity);
+        private void OnDisable()
+        {
+            _mover.OnMoveY -= ThrowDust;
+            DeathMaker.OnDie -= ShowHurt;
+        }
 
-        private void UpdateView()
+        private void FixedUpdate()
         {
             var speed = _mover.GetSpeed();
-            
             SetAnimatorSpeeds(speed);
-            FlipSprite(speed);
         }
 
-        private void FlipSprite(Vector2 speed)
-        {
-            if (speed.x < -_minSpeedToFlip)
-                SetMirrored(true);
-            else if (speed.x > _minSpeedToFlip)
-                SetMirrored(false);
-        }
+        protected override void DoAdditionalInitialization() => _mover = GetComponent<Mover>();
+        protected override void ShowHurt() => Animator.SetBool(AnimatorHashes.TakingDamage, true);
+
+        private void ThrowDust() => Instantiate(_jumpDust, _dustSpawn.transform.position, Quaternion.identity);
 
         private void SetAnimatorSpeeds(Vector2 speed)
         {

@@ -1,4 +1,5 @@
-﻿using Entities.Behaviours;
+﻿using System;
+using Entities.Functions;
 using UnityEngine;
 
 namespace Entities.Viewers
@@ -9,13 +10,13 @@ namespace Entities.Viewers
     public abstract class Viewer : MonoBehaviour
     {
         protected Animator Animator;
-        protected EntityBehaviour Behaviour;
+        protected DeathMaker DeathMaker;
         protected SpriteRenderer SpriteRenderer;
 
         private void Awake()
         {
             Animator = GetComponent<Animator>();
-            Behaviour = GetComponent<EntityBehaviour>();
+            DeathMaker = GetComponent<DeathMaker>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             DoAdditionalInitialization();
         }

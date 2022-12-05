@@ -18,7 +18,9 @@ namespace Entities.Functions.Movers
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _distanceGroundContact = Mathf.Abs(_groundCheckerEndPoint.position.y - transform.position.y);
+            
+            if(_groundCheckerEndPoint != null)
+                _distanceGroundContact = Mathf.Abs(_groundCheckerEndPoint.position.y - transform.position.y);
         }
 
         public override void MoveHorizontally(float ratio)
@@ -48,7 +50,8 @@ namespace Entities.Functions.Movers
 
         private bool IsOnGround()
         {
-            var hit = Physics2D.CircleCast(transform.position, _groundCastRadius, Vector2.down, _distanceGroundContact, _groundMask);
+            var hit = Physics2D.CircleCast(transform.position,
+                _groundCastRadius, Vector2.down, _distanceGroundContact, _groundMask);
             return hit.collider is not null;
         }
 

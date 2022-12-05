@@ -6,11 +6,8 @@ namespace Entities.Functions
     [RequireComponent(typeof(Collider2D))]
     public class CollisionDetector : MonoBehaviour
     {
-        public event Action OnCollision;
-        
-        private Collider2D _collider;
+        public event Action<Collider2D> OnCollision;
 
-        private void Awake() => _collider = GetComponent<Collider2D>();
-        private void OnCollisionEnter2D(Collision2D col) => OnCollision?.Invoke();
+        private void OnTriggerEnter2D(Collider2D collider) => OnCollision?.Invoke(collider);
     }
 }

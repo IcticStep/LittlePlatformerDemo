@@ -4,7 +4,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 namespace Entities.Controls
 {
-    public class PlayerInput : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         private Mover _mover;
         private Input _input;
