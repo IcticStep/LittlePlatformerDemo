@@ -58,7 +58,8 @@ namespace Entities.Functions
 
         private bool OtherIsDead(Collider2D otherCollider)
         {
-            return otherCollider.gameObject.TryGetComponent<DeathMaker>(out var component) && component.Died;
+            var otherDeathMaker = otherCollider.GetComponentInParent<DeathMaker>();
+            return otherDeathMaker != null && otherDeathMaker.Died;
         }
 
         private void AdjustCollisionJump()
@@ -85,6 +86,7 @@ namespace Entities.Functions
             _rigidbody.gravityScale = _dieFallGravityScale;
         }
 
+        // ReSharper disable once ParameterHidesMember
         private void StopCollisions() => _attachedColliders.ForEach(collider => collider.enabled = false);
         
         private void DestroySelfDelayed() => 

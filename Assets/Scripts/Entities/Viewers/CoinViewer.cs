@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Entities.Viewers
 {
+    [RequireComponent(typeof(CollectableItem))]
     public class CoinViewer : Viewer
     {
         [Header("On collected")]

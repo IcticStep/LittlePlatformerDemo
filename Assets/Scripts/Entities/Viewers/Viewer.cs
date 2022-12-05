@@ -5,18 +5,15 @@ using UnityEngine;
 namespace Entities.Viewers
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(Behaviour))]
     [RequireComponent(typeof(SpriteRenderer))]
     public abstract class Viewer : MonoBehaviour
     {
         protected Animator Animator;
-        protected DeathMaker DeathMaker;
         protected SpriteRenderer SpriteRenderer;
 
         private void Awake()
         {
             Animator = GetComponent<Animator>();
-            DeathMaker = GetComponent<DeathMaker>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             DoAdditionalInitialization();
         }

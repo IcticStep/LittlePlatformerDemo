@@ -13,7 +13,6 @@ namespace Entities.System
     public class LevelSwitcher : MonoBehaviour
     {
         [SerializeField] private OffCameraDetector _detector;
-
         [SerializeField] private List<EdgeSettings> _edgeSettings;
         [SerializeField] private float _killRestartDelay = 0.5f;
         [SerializeField] private float _nextLevelDelay;
@@ -24,15 +23,28 @@ namespace Entities.System
         public static event Action OnLevelSwitch;
         public static event Action OnLevelRestart;
 
+        private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
+
+        private void Awake()
+        {
+            InitEdgeActions();
+            _detector.OnEdgeLeft += Finish;
+        }
+
         private void Start()
         {
             OnLevelStart?.Invoke();
-            _detector.OnEdgeLeft += Finish;
         }
 
         private void OnDestroy()
         {
             _detector.OnEdgeLeft -= Finish;
+        }
+
+        private void InitEdgeActions()
+        {
+            _edgeActions[EdgeAction.Kill] = RestartLevel;
+            _edgeActions[EdgeAction.SwitchLevel] = SwitchLevel;
         }
 
         private void Finish(Edge edge)
@@ -42,35 +54,20 @@ namespace Entities.System
                 return;
 
             foreach (var edgeSettings in completed)
-                PerformAction(edgeSettings);
+                if(_edgeActions.ContainsKey(edgeSettings.Action))
+                    _edgeActions[edgeSettings.Action].Invoke(edgeSettings);
         }
 
-        private void PerformAction(EdgeSettings data)
-        {
-            switch (data.Action)
-            {
-                case EdgeAction.Kill:
-                    RestartLevel();
-                    return;
-                case EdgeAction.SwitchLevel:
-                    GoToNextLevel(data.GoalScene.name, data.Edge);
-                    return;
-                case EdgeAction.None:
-                default:
-                    return;
-            }
-        }
-
-        private void GoToNextLevel(string level, Edge? crossed) =>
+        private void SwitchLevel(EdgeSettings edgeSettings) =>
             DOTween.Sequence()
                 .InsertCallback(_nextLevelDelay, () =>
                 {
-                    SetPreviousLevelData(crossed);
+                    SetPreviousLevelData(edgeSettings.Edge);
                     OnLevelSwitch?.Invoke();
-                    SceneManager.LoadScene(level);
+                    SceneManager.LoadScene(edgeSettings.GoalScene.name);
                 });
 
-        private void RestartLevel() =>
+        private void RestartLevel(EdgeSettings edgeSettings) =>
             DOTween.Sequence()
                 .InsertCallback(_killRestartDelay, () =>
                 {

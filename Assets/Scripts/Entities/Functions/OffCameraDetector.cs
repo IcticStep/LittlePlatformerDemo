@@ -8,11 +8,13 @@ namespace Entities.Functions
     [RequireComponent(typeof(Collider2D))]
     public class OffCameraDetector : MonoBehaviour
     {
+        [SerializeField] private Camera _camera;
+        
         public event Action<Edge> OnEdgeLeft;
 
         private Vector2 _bounds;
 
-        private void Awake() => _bounds = Camera.main.GetVisibleBounds();
+        private void Awake() => _bounds = _camera.GetVisibleBounds();
 
         private void OnBecameInvisible()
         {

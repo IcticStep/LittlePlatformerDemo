@@ -10,8 +10,9 @@ namespace Entities.Controls
     public class Player : MonoBehaviour
     {
         private Mover _mover;
-        private Input _input;
         private DeathMaker _deathMaker;
+        private Input _input;
+        
         private float _horizontalMoveRatio;
 
         private void Awake()
@@ -52,12 +53,12 @@ namespace Entities.Controls
             _input.Disable();
         }
 
-        private void SetMoveRatio(CallbackContext data) => _horizontalMoveRatio = data.ReadValue<float>();
-        private void ResetMoveRatio(CallbackContext data) => _horizontalMoveRatio = default;
+        private void SetMoveRatio(CallbackContext input) => _horizontalMoveRatio = input.ReadValue<float>();
+        private void ResetMoveRatio(CallbackContext input) => _horizontalMoveRatio = default;
 
-        private void Jump(CallbackContext data)
+        private void Jump(CallbackContext input)
         {
-            var ratio = Mathf.Sign(data.ReadValue<float>());
+            var ratio = Mathf.Sign(input.ReadValue<float>());
             _mover.MoveVertically(ratio);
         }
     }

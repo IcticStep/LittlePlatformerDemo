@@ -12,7 +12,6 @@ namespace Entities.Functions.Movers
         [SerializeField] private float _groundCastRadius = 0.5f;
         
         private Rigidbody2D _rigidbody;
-        
         private float _distanceGroundContact;
 
         private void Awake()
@@ -27,7 +26,8 @@ namespace Entities.Functions.Movers
         {
             _rigidbody.velocity = new Vector2(_speed * ratio, _rigidbody.velocity.y);
 
-            if (Mathf.Abs(ratio) <= float.Epsilon)
+            var movementIsSmall = Mathf.Abs(ratio) <= float.Epsilon;
+            if (movementIsSmall)
                 return;
             
             SignalMovingX();

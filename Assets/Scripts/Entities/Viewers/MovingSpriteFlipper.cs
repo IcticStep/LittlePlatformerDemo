@@ -11,8 +11,8 @@ namespace Entities.Viewers
         [SerializeField] private float _minSpeedToFlip = 0.1f;
         [SerializeField] private bool _invertFlipping;
 
-        private SpriteRenderer _spriteRenderer;
         private Mover _mover;
+        private SpriteRenderer _spriteRenderer;
 
         private void Awake()
         {
