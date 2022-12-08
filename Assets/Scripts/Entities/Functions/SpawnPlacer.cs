@@ -1,4 +1,5 @@
 using ClassExtensions;
+using Entities.Data;
 using Entities.System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ namespace Entities.Functions
         
         private static Vector2 _switchedPosition;
         
-        private readonly (string Name, Edge? CrossedEdge)? _previousLevel = LevelSwitcher.PreviousLevel;
+        private readonly PreviousLevel? _previousLevel = LevelSwitcher.PreviousLevel;
 
         private void Awake() => SetSpawn();
 
@@ -43,7 +44,7 @@ namespace Entities.Functions
             && _previousLevel.Value.Name != SceneManager.GetActiveScene().name;
 
         // ReSharper disable once PossibleInvalidOperationException
-        private Vector2 GetSpawnCoordinates() => _previousLevel.Value.CrossedEdge switch
+        private Vector2 GetSpawnCoordinates() => _previousLevel.Value.Crossed switch
             {
                 Edge.Left => _switchedPosition.ReflectX().WithAdjustedX(-_basicEdgeLift),
                 Edge.Right => _switchedPosition.ReflectX().WithAdjustedX(_basicEdgeLift),

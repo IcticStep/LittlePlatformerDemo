@@ -49,5 +49,5 @@ MonoBehaviour:
   - Edge: 2
     Action: 1
     GoalScene: {fileID: 0}
-  _killRestartDelay: 1
+  _killRestartDelay: 0
   _nextLevelDelay: 0

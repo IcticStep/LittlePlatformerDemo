@@ -4,7 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using Entities.Data;
 using Entities.Functions;
-using UnityEditor;
+using Entities.System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +17,7 @@ namespace Entities.System
         [SerializeField] private float _killRestartDelay = 0.5f;
         [SerializeField] private float _nextLevelDelay;
 
-        public static (string Name, Edge? CrossedEdge)? PreviousLevel { get; private set; }
+        public static PreviousLevel PreviousLevel { get; private set; }
 
         public static event Action OnLevelStart;
         public static event Action OnLevelSwitch;
@@ -78,21 +78,5 @@ namespace Entities.System
 
         private static void SetPreviousLevelData(Edge? edge = null)
             => PreviousLevel = new (SceneManager.GetActiveScene().name, edge);
-
-        [Serializable]
-        private struct EdgeSettings
-        {
-            public Edge Edge;
-            public EdgeAction Action;
-            [Tooltip("Used if Action is set to Kill")]
-            public SceneAsset GoalScene;
-        }
-
-        private enum EdgeAction
-        {
-            None,
-            Kill,
-            SwitchLevel,
-        };
     }
 }

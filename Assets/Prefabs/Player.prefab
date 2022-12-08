@@ -310,7 +310,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -332,9 +332,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _groundCheckerEndPoint: {fileID: 6545570082223781717}
-  _speed: 5
-  _jumpVelocity: 7
+  _speed: 10
+  _jumpVelocity: 13
   _groundCastRadius: 0.7
+  _velocityPercentageJumpReturn: 0.2
 --- !u!114 &2178795451174238227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basicEdgeLift: 1
-  _topEdgeLiftUp: 2.5
+  _topEdgeLift: 2.5
 --- !u!114 &170049367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02214f962fa48aa998cf0ee1e11ba05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
 --- !u!114 &1923674932152405923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +434,7 @@ MonoBehaviour:
   _onKilledTorque: 2
   _makeJump: 1
   _jumpForce: 75
+  _dieFallGravityScale: 1
 --- !u!1 &2902593782629477396
 GameObject:
   m_ObjectHideFlags: 0

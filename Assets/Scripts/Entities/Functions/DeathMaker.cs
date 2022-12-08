@@ -16,12 +16,11 @@ namespace Entities.Functions
         [SerializeField] private float _onKilledTorque = 2f;
         [SerializeField] private bool _makeJump;
         [SerializeField] private float _jumpForce = 3f;
+        [SerializeField] private float _dieFallGravityScale = 1f;
 
         public event Action OnDie;
         public bool Died { get; private set; }
 
-        private const float _dieFallGravityScale = 1f;
-        
         private Rigidbody2D _rigidbody;
         private List<Collider2D> _attachedColliders;
         private Sequence _selfDestroying;
