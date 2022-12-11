@@ -2,12 +2,12 @@
 {
     public struct PreviousLevel
     {
-        public string Name { get; }
+        public int Id { get; }
         public Edge? Crossed { get; }
 
-        public PreviousLevel(string name, Edge? crossed)
+        public PreviousLevel(int id, Edge? crossed)
         {
-            Name = name;
+            Id = id;
             Crossed = crossed;
         }
     }

@@ -41,7 +41,7 @@ namespace Entities.Functions
 
         private bool NeedPositionReplace() =>
             _previousLevel != null 
-            && _previousLevel.Value.Name != SceneManager.GetActiveScene().name;
+            && _previousLevel.Value.Id != SceneManager.GetActiveScene().buildIndex;
 
         // ReSharper disable once PossibleInvalidOperationException
         private Vector2 GetSpawnCoordinates() => _previousLevel.Value.Crossed switch

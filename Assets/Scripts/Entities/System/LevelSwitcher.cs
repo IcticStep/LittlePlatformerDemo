@@ -73,10 +73,10 @@ namespace Entities.System
                 {
                     SetPreviousLevelData();
                     OnLevelRestart?.Invoke();
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 });
 
         private static void SetPreviousLevelData(Edge? edge = null)
-            => PreviousLevel = new (SceneManager.GetActiveScene().name, edge);
+            => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);
     }
 }
