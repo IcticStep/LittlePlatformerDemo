@@ -8,14 +8,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - World
+  - VFX
+  - Animals
+  - KillingParts
+  - Collectables
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: World
     uniqueID: 1007739793
+    locked: 0
+  - name: VFX
+    uniqueID: 866847875
     locked: 0
