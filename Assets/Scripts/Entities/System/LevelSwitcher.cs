@@ -7,16 +7,12 @@ using Entities.Functions;
 using Entities.System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Entities.System
 {
     public class LevelSwitcher : MonoBehaviour
     {
-        [SerializeField] private OffCameraDetector _detector;
-        [SerializeField] private List<EdgeSettings> _edgeSettings;
-        [SerializeField] private float _killRestartDelay = 0.5f;
-        [SerializeField] private float _nextLevelDelay;
-
         public static PreviousLevel PreviousLevel { get; private set; }
 
         public static event Action OnLevelStart;
@@ -24,7 +20,17 @@ namespace Entities.System
         public static event Action OnLevelRestart;
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
+        
+        private OffCameraDetector _detector;
+        private List<EdgeSettings> _edgeSettings;
 
+        [Inject]
+        private void Construct(OffCameraDetector detector, List<EdgeSettings> edgeSettings)
+        {
+            _detector = detector;
+            _edgeSettings = edgeSettings;
+        }
+        
         private void Awake()
         {
             InitEdgeActions();
@@ -60,7 +66,7 @@ namespace Entities.System
 
         private void SwitchLevel(EdgeSettings edgeSettings) =>
             DOTween.Sequence()
-                .InsertCallback(_nextLevelDelay, () =>
+                .InsertCallback(0, () =>
                 {
                     SetPreviousLevelData(edgeSettings.Edge);
                     OnLevelSwitch?.Invoke();
@@ -69,7 +75,7 @@ namespace Entities.System
 
         private void RestartLevel(EdgeSettings edgeSettings) =>
             DOTween.Sequence()
-                .InsertCallback(_killRestartDelay, () =>
+                .InsertCallback(0, () =>
                 {
                     SetPreviousLevelData();
                     OnLevelRestart?.Invoke();

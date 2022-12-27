@@ -1,6 +1,6 @@
 namespace Entities.System.Data
 {
-    enum EdgeAction
+    public enum EdgeAction
     {
         None,
         Kill,

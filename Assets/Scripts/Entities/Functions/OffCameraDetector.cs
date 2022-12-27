@@ -2,19 +2,18 @@
 using ClassExtensions;
 using Entities.Data;
 using UnityEngine;
+using Zenject;
 
 namespace Entities.Functions
 {
     [RequireComponent(typeof(Collider2D))]
     public class OffCameraDetector : MonoBehaviour
     {
-        [SerializeField] private Camera _camera;
-        
         public event Action<Edge> OnEdgeLeft;
-
         private Vector2 _bounds;
 
-        private void Awake() => _bounds = _camera.GetVisibleBounds();
+        [Inject]
+        public void Construct(Camera newCamera) => _bounds = newCamera.GetVisibleBounds();
 
         private void OnBecameInvisible()
         {
