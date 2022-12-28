@@ -13,11 +13,11 @@ namespace Entities.System
 {
     public class LevelSwitcher : MonoBehaviour
     {
-        public static PreviousLevel PreviousLevel { get; private set; }
+        public PreviousLevel PreviousLevel { get; private set; }
 
-        public static event Action OnLevelStart;
-        public static event Action OnLevelSwitch;
-        public static event Action OnLevelRestart;
+        public event Action OnLevelStart;
+        public event Action OnLevelSwitch;
+        public event Action OnLevelRestart;
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
         
@@ -82,7 +82,7 @@ namespace Entities.System
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 });
 
-        private static void SetPreviousLevelData(Edge? edge = null)
+        private void SetPreviousLevelData(Edge? edge = null)
             => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);
     }
 }

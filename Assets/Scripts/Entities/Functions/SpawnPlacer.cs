@@ -4,6 +4,7 @@ using Entities.Data;
 using Entities.System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 using Edge = Entities.Data.Edge;
 
 namespace Entities.Functions
@@ -12,14 +13,18 @@ namespace Entities.Functions
     {
         [SerializeField] private float _basicEdgeLift = 1f;
         [SerializeField] private float _topEdgeLift = 2.5f;
-        
+
+        private LevelSwitcher _levelSwitcher;
         private Vector2 _switchedPosition;
         private Vector2 _startLevelPosition;
         private bool _afterRestart;
         
-        private readonly PreviousLevel? _previousLevel = LevelSwitcher.PreviousLevel;
-
+        private PreviousLevel? PreviousLevel => _levelSwitcher.PreviousLevel;
+        
         private void Awake() => SetSpawn();
+
+        [Inject]
+        public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
 
         private void DoRestartResetIfNeeded()
         {
@@ -35,17 +40,17 @@ namespace Entities.Functions
 
         private void OnEnable()
         {
-            LevelSwitcher.OnLevelSwitch += SaveSwitchPosition;
-            LevelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
-            LevelSwitcher.OnLevelStart += SetSpawn;
-            LevelSwitcher.OnLevelRestart += MarkRestart;
+            _levelSwitcher.OnLevelSwitch += SaveSwitchPosition;
+            _levelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
+            _levelSwitcher.OnLevelStart += SetSpawn;
+            _levelSwitcher.OnLevelRestart += MarkRestart;
         }
         private void OnDisable()
         {
-            LevelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
-            LevelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
-            LevelSwitcher.OnLevelStart -= SetSpawn;
-            LevelSwitcher.OnLevelRestart -= MarkRestart;
+            _levelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
+            _levelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
+            _levelSwitcher.OnLevelStart -= SetSpawn;
+            _levelSwitcher.OnLevelRestart -= MarkRestart;
         }
 
         private void MarkRestart() => _afterRestart = true;
@@ -61,11 +66,11 @@ namespace Entities.Functions
         }
 
         private bool NeedPositionReplace() =>
-            _previousLevel != null 
-            && _previousLevel.Value.Id != SceneManager.GetActiveScene().buildIndex;
+            PreviousLevel != null 
+            && PreviousLevel.Value.Id != SceneManager.GetActiveScene().buildIndex;
 
         // ReSharper disable once PossibleInvalidOperationException
-        private Vector2 GetSpawnCoordinates() => _previousLevel.Value.Crossed switch
+        private Vector2 GetSpawnCoordinates() => PreviousLevel.Value.Crossed switch
             {
                 Edge.Left => _switchedPosition.ReflectX().WithAdjustedX(-_basicEdgeLift),
                 Edge.Right => _switchedPosition.ReflectX().WithAdjustedX(_basicEdgeLift),

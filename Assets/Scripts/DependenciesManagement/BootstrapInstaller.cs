@@ -11,14 +11,13 @@ namespace DependenciesManagement
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private Camera _mainCameraPrefab;
         [SerializeField] private LevelSwitcher _levelSwitcherPrefab;
-        
-        public LevelSwitcher LevelSwitcherPrefab => _levelSwitcherPrefab;
 
         // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
             BindCamera();
             BindPlayer();
+            BindLevelSwitcher();
         }
 
         private void BindCamera()
@@ -27,6 +26,15 @@ namespace DependenciesManagement
             Container
                 .Bind<Camera>()
                 .FromInstance(camera)
+                .AsSingle();
+        }
+
+        private void BindLevelSwitcher()
+        {
+            var levelSwitcher = Container.InstantiatePrefabForComponent<LevelSwitcher>(_levelSwitcherPrefab);
+            Container
+                .Bind<LevelSwitcher>()
+                .FromInstance(levelSwitcher)
                 .AsSingle();
         }
 

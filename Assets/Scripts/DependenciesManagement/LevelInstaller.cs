@@ -21,17 +21,10 @@ namespace DependenciesManagement
             Init();
             
             BindLevelSwitchSettings();
-            CreateLevelSwitcher();
         }
 
         private void Init() => _bootstrapInstaller = ProjectContext.Instance.GetComponent<BootstrapInstaller>();
         
-        private void CreateLevelSwitcher()
-        {
-            var levelSwitcherPrefab = _bootstrapInstaller.LevelSwitcherPrefab;
-            Container.InstantiatePrefabForComponent<LevelSwitcher>(levelSwitcherPrefab);
-        }
-
         private void BindLevelSwitchSettings() => Container
                 .Bind<List<EdgeSettings>>()
                 .FromInstance(_levelSwitchConfiguration.EdgeSettings);

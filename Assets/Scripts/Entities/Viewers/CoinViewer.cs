@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Entities.System;
 using UnityEngine;
+using Zenject;
 
 namespace Entities.Viewers
 {
@@ -12,21 +13,25 @@ namespace Entities.Viewers
         [SerializeField] private float _flyingUpDistance = 2;
         [SerializeField] private float _flyingUpTime = 0.4f;
 
+        private LevelSwitcher _levelSwitcher;
         private CollectableItem _collectableItem;
         private Sequence _flyingToDestroy;
-
+        
+        [Inject]
+        private void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
+        
         private void OnEnable()
         {
             _collectableItem.OnCollected += FlyToDestroy;
-            LevelSwitcher.OnLevelSwitch += StopFlyingToDestroy;
-            LevelSwitcher.OnLevelRestart += StopFlyingToDestroy;
+            _levelSwitcher.OnLevelSwitch += StopFlyingToDestroy;
+            _levelSwitcher.OnLevelRestart += StopFlyingToDestroy;
         }
 
         private void OnDisable()
         {
             _collectableItem.OnCollected -= FlyToDestroy;
-            LevelSwitcher.OnLevelSwitch -= StopFlyingToDestroy;
-            LevelSwitcher.OnLevelRestart -= StopFlyingToDestroy;
+            _levelSwitcher.OnLevelSwitch -= StopFlyingToDestroy;
+            _levelSwitcher.OnLevelRestart -= StopFlyingToDestroy;
         }
 
         protected override void DoAdditionalInitialization() => _collectableItem = GetComponent<CollectableItem>();
