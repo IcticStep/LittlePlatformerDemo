@@ -16,8 +16,8 @@ namespace DependenciesManagement
         public override void InstallBindings()
         {
             BindCamera();
-            BindPlayer();
             BindLevelSwitcher();
+            BindPlayer();
         }
 
         private void BindCamera()

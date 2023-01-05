@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 4507675311161346742}
   - component: {fileID: 7212586825820188929}
   - component: {fileID: 4573071283424567029}
+  - component: {fileID: 8640163820419582177}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -374,7 +375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02214f962fa48aa998cf0ee1e11ba05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
 --- !u!114 &1923674932152405923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +435,18 @@ MonoBehaviour:
   _makeJump: 1
   _jumpForce: 75
   _dieFallGravityScale: 1
+--- !u!114 &8640163820419582177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512740614997977972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f9270eb0f847a98e59082adc972f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2902593782629477396
 GameObject:
   m_ObjectHideFlags: 0

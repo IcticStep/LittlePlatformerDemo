@@ -10,18 +10,19 @@ namespace Entities.Functions
     public class OffCameraDetector : MonoBehaviour
     {
         public event Action<Edge> OnEdgeLeft;
-        private Vector2 _bounds;
+        private Camera _camera;
 
         [Inject]
-        public void Construct(Camera newCamera) => _bounds = newCamera.GetVisibleBounds();
+        public void Construct(Camera camera) => _camera = camera;
 
         private void OnBecameInvisible()
         {
             var position = transform.position;
+            var bounds = _camera.GetVisibleBounds();
 
-            if (Mathf.Abs(position.x) > _bounds.x)
+            if (Mathf.Abs(position.x) > bounds.x)
                 OnEdgeLeft?.Invoke(position.x > 0 ? Edge.Right : Edge.Left);
-            if (Mathf.Abs(position.y) > _bounds.y)
+            if (Mathf.Abs(position.y) > bounds.y)
                 OnEdgeLeft?.Invoke(position.y > 0 ? Edge.Top : Edge.Bottom);
         }
     }

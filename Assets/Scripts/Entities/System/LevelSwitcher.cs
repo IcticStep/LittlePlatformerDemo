@@ -6,6 +6,7 @@ using Entities.Data;
 using Entities.Functions;
 using Entities.System.Data;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -21,30 +22,14 @@ namespace Entities.System
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
         
-        private OffCameraDetector _detector;
-        private List<EdgeSettings> _edgeSettings;
+        public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
 
-        [Inject]
-        private void Construct(OffCameraDetector detector, List<EdgeSettings> edgeSettings)
-        {
-            _detector = detector;
-            _edgeSettings = edgeSettings;
-        }
-        
-        private void Awake()
+        private void Awake() => SceneManager.sceneLoaded += Init;
+ 
+        private void Init(Scene scene, LoadSceneMode sceneMode)
         {
             InitEdgeActions();
-            _detector.OnEdgeLeft += Finish;
-        }
-
-        private void Start()
-        {
             OnLevelStart?.Invoke();
-        }
-
-        private void OnDestroy()
-        {
-            _detector.OnEdgeLeft -= Finish;
         }
 
         private void InitEdgeActions()
@@ -53,9 +38,9 @@ namespace Entities.System
             _edgeActions[EdgeAction.SwitchLevel] = SwitchLevel;
         }
 
-        private void Finish(Edge edge)
+        public void FinishLevel(Edge edge)
         {
-            var completed = _edgeSettings.Where(s => s.Edge == edge).ToList();
+            var completed = EdgeSettings.Where(s => s.Edge == edge).ToList();
             if (completed.Count == 0)
                 return;
 
