@@ -1,6 +1,8 @@
 using Entities.Functions;
 using Entities.Functions.Movers;
+using Entities.System;
 using UnityEngine;
+using Zenject;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Entities.Controls
@@ -9,11 +11,15 @@ namespace Entities.Controls
     [RequireComponent(typeof(DeathMaker))]
     public class Player : MonoBehaviour
     {
+        private LevelSwitcher _levelSwitcher;
         private Mover _mover;
         private DeathMaker _deathMaker;
         private Input _input;
-        
+
         private float _horizontalMoveRatio;
+
+        [Inject]
+        public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
 
         private void Awake()
         {
@@ -26,12 +32,14 @@ namespace Entities.Controls
         {
             EnableInput();
             _deathMaker.OnDie += DisableInput;
+            _levelSwitcher.OnLevelStart += EnableInput;
         }
 
         private void OnDisable()
         {
             DisableInput();
             _deathMaker.OnDie -= DisableInput;
+            _levelSwitcher.OnLevelStart -= EnableInput;
         }
 
         private void FixedUpdate() => _mover.MoveHorizontally(_horizontalMoveRatio);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Entities.Functions
 {
@@ -11,6 +12,7 @@ namespace Entities.Functions
     public class DeathMaker : MonoBehaviour
     {
         [SerializeField] private List<CollisionDetector> _weakPoints;
+        [SerializeField] private bool _shouldBeDestroyedTotally;
         [SerializeField] private float _destroyingSecondsDelay = 10f;
         [SerializeField] private bool _applyKillingTorque;
         [SerializeField] private float _onKilledTorque = 2f;
@@ -41,7 +43,7 @@ namespace Entities.Functions
                 return;
 
             MarkSelfDied();
-
+            
             StartPhysicFall();
             AdjustCollisionJump();
             AdjustCollisionTorque(otherCollider);
@@ -88,13 +90,18 @@ namespace Entities.Functions
         // ReSharper disable once ParameterHidesMember
         private void StopCollisions() => _attachedColliders.ForEach(collider => collider.enabled = false);
         
-        private void DestroySelfDelayed() => 
+        private void DestroySelfDelayed()
+        {
+            if (!_shouldBeDestroyedTotally)
+                return;
+
             _selfDestroying ??= DOTween.Sequence()
                 .AppendInterval(_destroyingSecondsDelay)
                 .AppendCallback(() =>
                 {
-                    if (gameObject != null) 
+                    if (gameObject != null)
                         Destroy(gameObject);
                 });
+        }
     }
 }

@@ -9,19 +9,25 @@ using Edge = Entities.Data.Edge;
 
 namespace Entities.Functions
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class SpawnPlacer : MonoBehaviour
     {
         [SerializeField] private float _basicEdgeLift = 1f;
         [SerializeField] private float _topEdgeLift = 2.5f;
 
         private LevelSwitcher _levelSwitcher;
+        private Rigidbody2D _rigidbody;
         private Vector2 _switchedPosition;
         private Vector2 _startLevelPosition;
         private bool _afterRestart;
         
         private PreviousLevel? PreviousLevel => _levelSwitcher.PreviousLevel;
         
-        private void Awake() => SetSpawn();
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+            SetSpawn();
+        }
 
         [Inject]
         public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
@@ -30,6 +36,7 @@ namespace Entities.Functions
         {
             if (_afterRestart)
             {
+                _rigidbody.velocity = Vector2.zero;
                 transform.position = _startLevelPosition;
                 _afterRestart = false;
                 return;
@@ -41,15 +48,15 @@ namespace Entities.Functions
         private void OnEnable()
         {
             _levelSwitcher.OnLevelSwitch += SaveSwitchPosition;
-            _levelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
             _levelSwitcher.OnLevelStart += SetSpawn;
+            _levelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
             _levelSwitcher.OnLevelRestart += MarkRestart;
         }
         private void OnDisable()
         {
             _levelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
-            _levelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
             _levelSwitcher.OnLevelStart -= SetSpawn;
+            _levelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
             _levelSwitcher.OnLevelRestart -= MarkRestart;
         }
 
@@ -67,7 +74,8 @@ namespace Entities.Functions
 
         private bool NeedPositionReplace() =>
             PreviousLevel != null 
-            && PreviousLevel.Value.Id != SceneManager.GetActiveScene().buildIndex;
+            && PreviousLevel.Value.Id != SceneManager.GetActiveScene().buildIndex
+            && _afterRestart == false;
 
         // ReSharper disable once PossibleInvalidOperationException
         private Vector2 GetSpawnCoordinates() => PreviousLevel.Value.Crossed switch

@@ -25,7 +25,8 @@ namespace Entities.System
         public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
 
         private void Awake() => SceneManager.sceneLoaded += Init;
- 
+        private void OnDestroy() => SceneManager.sceneLoaded -= Init;
+
         private void Init(Scene scene, LoadSceneMode sceneMode)
         {
             InitEdgeActions();
