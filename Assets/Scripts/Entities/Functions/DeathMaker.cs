@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace Entities.Functions
 {
@@ -36,6 +35,8 @@ namespace Entities.Functions
         private void OnEnable() => _weakPoints.ForEach(weekPoint => weekPoint.OnCollision += Die);
         private void OnDisable() => _weakPoints.ForEach(weekPoint => weekPoint.OnCollision -= Die);
         private void OnDestroy() => _selfDestroying.Kill();
+
+        public void Resurrect() => Died = false;
 
         private void Die(Collider2D otherCollider)
         {

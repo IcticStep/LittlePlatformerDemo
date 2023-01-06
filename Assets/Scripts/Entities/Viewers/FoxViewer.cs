@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System;
 using Entities.Functions;
 using Entities.Functions.Movers;
-using UnityEngine.TextCore.Text;
 using VFX;
 
 namespace Entities.Viewers
