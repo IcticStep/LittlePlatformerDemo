@@ -17,6 +17,9 @@ namespace Entities.Functions
 
         private void OnBecameInvisible()
         {
+            if(_camera is null)
+                return;
+            
             var position = transform.position;
             var bounds = _camera.GetVisibleBounds();
 
