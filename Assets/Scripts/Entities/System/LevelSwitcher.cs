@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using Entities.Data;
-using Entities.Functions;
 using Entities.System.Data;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace Entities.System
 {
@@ -41,8 +37,9 @@ namespace Entities.System
 
         public void FinishLevel(Edge edge)
         {
-            var completed = EdgeSettings.Where(s => s.Edge == edge).ToList();
-            if (completed.Count == 0)
+            var completed = EdgeSettings.Where(s => s.Edge == edge);
+            
+            if (completed.Any())
                 return;
 
             foreach (var edgeSettings in completed)
@@ -50,23 +47,19 @@ namespace Entities.System
                     _edgeActions[edgeSettings.Action].Invoke(edgeSettings);
         }
 
-        private void SwitchLevel(EdgeSettings edgeSettings) =>
-            DOTween.Sequence()
-                .InsertCallback(0, () =>
-                {
-                    SetPreviousLevelData(edgeSettings.Edge);
-                    OnLevelSwitch?.Invoke();
-                    SceneManager.LoadScene(edgeSettings.GoalScene.name);
-                });
+        private void SwitchLevel(EdgeSettings edgeSettings)
+        {
+            SetPreviousLevelData(edgeSettings.Edge);
+            OnLevelSwitch?.Invoke();
+            SceneManager.LoadScene(edgeSettings.GoalScene.name);
+        }
 
-        private void RestartLevel(EdgeSettings edgeSettings) =>
-            DOTween.Sequence()
-                .InsertCallback(0, () =>
-                {
-                    SetPreviousLevelData();
-                    OnLevelRestart?.Invoke();
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                });
+        private void RestartLevel(EdgeSettings edgeSettings)
+        {
+            SetPreviousLevelData();
+            OnLevelRestart?.Invoke();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
         private void SetPreviousLevelData(Edge? edge = null)
             => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);

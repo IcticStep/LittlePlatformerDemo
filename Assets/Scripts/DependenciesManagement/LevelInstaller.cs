@@ -28,9 +28,7 @@ namespace DependenciesManagement
 
         private void LoadLevelConfiguration()
         {
-            var levelConfigurationLoader = Container.InstantiateComponent<LevelConfigurationLoader>(_levelSwitcher.gameObject);
-            _levelSwitcher.EdgeSettings = levelConfigurationLoader.LevelSettings;
-            Destroy(levelConfigurationLoader);
+            _levelSwitcher.EdgeSettings = _levelSwitchConfiguration.EdgeSettings;
         }
     }
 }
