@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Entities.System.Data
 {
     [Serializable]
-    struct EdgeSettings
+    public struct EdgeSettings
     {
         public Edge Edge;
         public EdgeAction Action;

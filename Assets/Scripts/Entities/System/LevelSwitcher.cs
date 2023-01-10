@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using Entities.Data;
-using Entities.Functions;
 using Entities.System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,33 +10,23 @@ namespace Entities.System
 {
     public class LevelSwitcher : MonoBehaviour
     {
-        [SerializeField] private OffCameraDetector _detector;
-        [SerializeField] private List<EdgeSettings> _edgeSettings;
-        [SerializeField] private float _killRestartDelay = 0.5f;
-        [SerializeField] private float _nextLevelDelay;
+        public PreviousLevel PreviousLevel { get; private set; }
 
-        public static PreviousLevel PreviousLevel { get; private set; }
-
-        public static event Action OnLevelStart;
-        public static event Action OnLevelSwitch;
-        public static event Action OnLevelRestart;
+        public event Action OnLevelStart;
+        public event Action OnLevelSwitch;
+        public event Action OnLevelRestart;
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
+        
+        public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
 
-        private void Awake()
+        private void Awake() => SceneManager.sceneLoaded += Init;
+        private void OnDestroy() => SceneManager.sceneLoaded -= Init;
+
+        private void Init(Scene scene, LoadSceneMode sceneMode)
         {
             InitEdgeActions();
-            _detector.OnEdgeLeft += Finish;
-        }
-
-        private void Start()
-        {
             OnLevelStart?.Invoke();
-        }
-
-        private void OnDestroy()
-        {
-            _detector.OnEdgeLeft -= Finish;
         }
 
         private void InitEdgeActions()
@@ -47,10 +35,10 @@ namespace Entities.System
             _edgeActions[EdgeAction.SwitchLevel] = SwitchLevel;
         }
 
-        private void Finish(Edge edge)
+        public void FinishLevel(Edge edge)
         {
-            var completed = _edgeSettings.Where(s => s.Edge == edge).ToList();
-            if (completed.Count == 0)
+            var completed = EdgeSettings.Where(s => s.Edge == edge);
+            if (!completed.Any())
                 return;
 
             foreach (var edgeSettings in completed)
@@ -58,25 +46,21 @@ namespace Entities.System
                     _edgeActions[edgeSettings.Action].Invoke(edgeSettings);
         }
 
-        private void SwitchLevel(EdgeSettings edgeSettings) =>
-            DOTween.Sequence()
-                .InsertCallback(_nextLevelDelay, () =>
-                {
-                    SetPreviousLevelData(edgeSettings.Edge);
-                    OnLevelSwitch?.Invoke();
-                    SceneManager.LoadScene(edgeSettings.GoalScene.name);
-                });
+        private void SwitchLevel(EdgeSettings edgeSettings)
+        {
+            SetPreviousLevelData(edgeSettings.Edge);
+            OnLevelSwitch?.Invoke();
+            SceneManager.LoadScene(edgeSettings.GoalScene.name);
+        }
 
-        private void RestartLevel(EdgeSettings edgeSettings) =>
-            DOTween.Sequence()
-                .InsertCallback(_killRestartDelay, () =>
-                {
-                    SetPreviousLevelData();
-                    OnLevelRestart?.Invoke();
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                });
+        private void RestartLevel(EdgeSettings edgeSettings)
+        {
+            SetPreviousLevelData();
+            OnLevelRestart?.Invoke();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
-        private static void SetPreviousLevelData(Edge? edge = null)
+        private void SetPreviousLevelData(Edge? edge = null)
             => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);
     }
 }

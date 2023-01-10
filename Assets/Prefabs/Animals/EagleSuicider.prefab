@@ -177,11 +177,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weakPoints:
   - {fileID: 2479317172049725173}
+  _shouldBeDestroyedTotally: 1
   _destroyingSecondsDelay: 10
   _applyKillingTorque: 1
   _onKilledTorque: 2
   _makeJump: 1
   _jumpForce: 3
+  _dieFallGravityScale: 1
 --- !u!114 &2479317172049725173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efb8dae89271554da44e54c5d3b5475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mover: {fileID: 5537698699134728382}
   _collisionDetector: {fileID: 2479317172049725173}
   _currentDirection: -1
 --- !u!114 &8745872553009111868

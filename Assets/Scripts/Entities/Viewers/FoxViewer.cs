@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using Entities.Functions;
 using Entities.Functions.Movers;
 using VFX;
@@ -40,6 +39,8 @@ namespace Entities.Viewers
             var speed = _mover.GetSpeed();
             SetAnimatorSpeeds(speed);
         }
+        
+        public void StopShowingHurt() => Animator.SetBool(AnimatorHashes.TakingDamage, false);
 
         protected override void DoAdditionalInitialization()
         {

@@ -340,6 +340,7 @@ MonoBehaviour:
   _speed: 2
   _jumpVelocity: 7
   _groundCastRadius: 0.5
+  _velocityPercentageJumpReturn: 0.3
 --- !u!114 &8176456866430759290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,11 +355,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weakPoints:
   - {fileID: 5450062007574036030}
+  _shouldBeDestroyedTotally: 1
   _destroyingSecondsDelay: 10
   _applyKillingTorque: 1
   _onKilledTorque: 2
   _makeJump: 0
   _jumpForce: 3
+  _dieFallGravityScale: 1
 --- !u!114 &526509155226440968
 MonoBehaviour:
   m_ObjectHideFlags: 0
