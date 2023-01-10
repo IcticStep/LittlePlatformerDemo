@@ -1,5 +1,4 @@
-﻿using System;
-using Entities.Functions.Movers;
+﻿using Entities.Functions.Movers;
 using UnityEngine;
 
 namespace Entities.Viewers

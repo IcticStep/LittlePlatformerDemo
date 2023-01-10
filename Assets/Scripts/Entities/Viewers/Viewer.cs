@@ -1,6 +1,4 @@
-﻿using System;
-using Entities.Functions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Entities.Viewers
 {
