@@ -38,8 +38,7 @@ namespace Entities.System
         public void FinishLevel(Edge edge)
         {
             var completed = EdgeSettings.Where(s => s.Edge == edge);
-            
-            if (completed.Any())
+            if (!completed.Any())
                 return;
 
             foreach (var edgeSettings in completed)

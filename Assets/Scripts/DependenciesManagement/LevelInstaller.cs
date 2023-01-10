@@ -18,17 +18,9 @@ namespace DependenciesManagement
         // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
-            BindLevelSwitchSettings();
             LoadLevelConfiguration();
         }
 
-        private void BindLevelSwitchSettings() => Container
-                .Bind<List<EdgeSettings>>()
-                .FromInstance(_levelSwitchConfiguration.EdgeSettings);
-
-        private void LoadLevelConfiguration()
-        {
-            _levelSwitcher.EdgeSettings = _levelSwitchConfiguration.EdgeSettings;
-        }
+        private void LoadLevelConfiguration() => _levelSwitcher.EdgeSettings = _levelSwitchConfiguration.EdgeSettings;
     }
 }
