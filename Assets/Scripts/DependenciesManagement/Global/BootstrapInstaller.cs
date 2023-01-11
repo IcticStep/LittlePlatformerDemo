@@ -4,7 +4,7 @@ using Entities.System;
 using UnityEngine;
 using Zenject;
 
-namespace DependenciesManagement
+namespace DependenciesManagement.Global
 {
     public class BootstrapInstaller : MonoInstaller
     {
