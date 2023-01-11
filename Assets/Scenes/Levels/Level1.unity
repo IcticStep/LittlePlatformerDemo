@@ -1996,6 +1996,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2259859390110679953, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259859390110679953, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653035195967179176, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653035195967179176, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653035195967179176, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653035195967179176, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7977032904320930945, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
       propertyPath: m_Name
       value: MobileControls
