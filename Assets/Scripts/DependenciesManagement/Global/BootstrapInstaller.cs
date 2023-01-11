@@ -2,6 +2,7 @@ using Entities.Controls;
 using Entities.Functions;
 using Entities.System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace DependenciesManagement.Global
@@ -11,13 +12,22 @@ namespace DependenciesManagement.Global
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private Camera _mainCameraPrefab;
         [SerializeField] private LevelSwitcher _levelSwitcherPrefab;
+        [SerializeField] private EventSystem _eventSystemPrefab;
 
         // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
+            CreateEventSystem();
+            
             BindCamera();
             BindLevelSwitcher();
             BindPlayer();
+        }
+
+        private void CreateEventSystem()
+        {
+            var eventSystem = Container.InstantiatePrefabForComponent<EventSystem>(_eventSystemPrefab);
+            DontDestroyOnLoad(eventSystem);
         }
 
         private void BindCamera()
