@@ -20,11 +20,8 @@ namespace DependenciesManagement.Global
 
         private void CreateMobileControlUI()
         {
-            var eventSystemPrefab = Container.InstantiatePrefabForComponent<EventSystem>(_eventSystemPrefab);
-            Container
-                .Bind<EventSystem>()
-                .FromInstance(eventSystemPrefab)
-                .AsSingle();
+            var eventSystem = Container.InstantiatePrefabForComponent<EventSystem>(_eventSystemPrefab);
+            DontDestroyOnLoad(eventSystem);
             
             var mobileControls = Container.InstantiatePrefabForComponent<MobileControls>(_mobileUIControlsPrefab);
             Container
