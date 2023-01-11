@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2615361646696128962}
   - component: {fileID: 9211625828323860487}
   - component: {fileID: -5651710257534038053}
+  - component: {fileID: 7608721674025437836}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: -5651710257534038053}
+  - {fileID: 7608721674025437836}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 0
   _editorReflectionBakingCoverageMode: 0
@@ -77,3 +79,17 @@ MonoBehaviour:
   _playerPrefab: {fileID: 7212586825820188929, guid: dbab7bdb2d57ca8418dceaacca8c7db8, type: 3}
   _mainCameraPrefab: {fileID: 704138892664527294, guid: d0d07edb4bbbc4641abb1bd8ca337e1e, type: 3}
   _levelSwitcherPrefab: {fileID: 8082335291381855323, guid: 8511841b7e3d3934498b9115410d14a7, type: 3}
+--- !u!114 &7608721674025437836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456733682094426598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d943bce057cb8a43bab1f05df571392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventSystemPrefab: {fileID: 8159117245415397653, guid: c4a1c6d8d0331fd4990029c8b8cfa7a3, type: 3}
+  _mobileUIControlsPrefab: {fileID: 719734498073073639, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
