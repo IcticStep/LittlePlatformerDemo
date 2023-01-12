@@ -8,7 +8,6 @@ namespace DependenciesManagement.Global
 {
     public class MobileUIInstaller : MonoInstaller
     {
-        [SerializeField] private EventSystem _eventSystemPrefab;
         [SerializeField] private MobileControls _mobileUIControlsPrefab;
         
         public override void InstallBindings()
@@ -20,9 +19,6 @@ namespace DependenciesManagement.Global
 
         private void CreateMobileControlUI()
         {
-            var eventSystem = Container.InstantiatePrefabForComponent<EventSystem>(_eventSystemPrefab);
-            DontDestroyOnLoad(eventSystem);
-            
             var mobileControls = Container.InstantiatePrefabForComponent<MobileControls>(_mobileUIControlsPrefab);
             Container
                 .Bind<MobileControls>()
