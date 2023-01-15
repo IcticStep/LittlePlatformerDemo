@@ -2,15 +2,16 @@ using System;
 using Entities.Data;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Entities.System.Data
 {
     [Serializable]
     public struct EdgeSettings
     {
-        public Edge Edge;
-        public EdgeAction Action;
+        [SerializeField] public Edge Edge;
+        [SerializeField] public EdgeAction Action;
         [Tooltip("Used if Action is set to Kill")]
-        public SceneAsset GoalScene;
+        [SerializeField] public int GoalSceneIndex;
     }
 }

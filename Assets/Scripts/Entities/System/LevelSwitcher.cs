@@ -10,6 +10,7 @@ namespace Entities.System
 {
     public class LevelSwitcher : MonoBehaviour
     {
+        private const string _levelNamePrefix = "Level";
         public PreviousLevel PreviousLevel { get; private set; }
 
         public event Action OnLevelStart;
@@ -50,7 +51,7 @@ namespace Entities.System
         {
             SetPreviousLevelData(edgeSettings.Edge);
             OnLevelSwitch?.Invoke();
-            SceneManager.LoadScene(edgeSettings.GoalScene.name);
+            SceneManager.LoadScene(GetLevelNameByIndex(edgeSettings.GoalSceneIndex));
         }
 
         private void RestartLevel(EdgeSettings edgeSettings)
@@ -62,5 +63,7 @@ namespace Entities.System
 
         private void SetPreviousLevelData(Edge? edge = null)
             => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);
+
+        private string GetLevelNameByIndex(int index) => _levelNamePrefix + Convert.ToString(index);
     }
 }

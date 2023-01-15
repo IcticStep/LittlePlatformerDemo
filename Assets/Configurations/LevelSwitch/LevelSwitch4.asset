@@ -15,7 +15,10 @@ MonoBehaviour:
   EdgeSettings:
   - Edge: 2
     Action: 1
-    GoalScene: {fileID: 0}
+    GoalSceneIndex: 0
   - Edge: 3
     Action: 2
-    GoalScene: {fileID: 102900000, guid: 7f3a42d52fb0a34419bac7a8e4670f23, type: 3}
+    GoalSceneIndex: 3
+  - Edge: 1
+    Action: 2
+    GoalSceneIndex: 5
