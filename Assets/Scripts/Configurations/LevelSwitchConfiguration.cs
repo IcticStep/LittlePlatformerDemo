@@ -9,11 +9,12 @@ namespace Configurations
     [CreateAssetMenu(fileName = "LevelSwitch", menuName = "ScriptableObjects/LevelSwitchConfiguration", order = 1)]
     public class LevelSwitchConfiguration : ScriptableObject
     {
-        private const string _levelPrefix = "Level";
-        private const string _levelPath = "Assets/Scenes/Levels/";
-        private const string _levelFileType = ".unity";
-        
         public List<EdgeSettings> EdgeSettings;
+        
+        private const string LevelPrefix = "Level";
+        private const string LevelPath = "Assets/Scenes/Levels/";
+        private const string LevelFileType = ".unity";
+
         private string _lastFullPathChecked = "";
 
         private void OnValidate()
@@ -28,7 +29,7 @@ namespace Configurations
             if(edgeSettings.Action != EdgeAction.SwitchLevel)
                 return;
             
-            if (SceneExists($"{_levelPrefix}{edgeSettings.GoalSceneIndex}"))
+            if (SceneExists($"{LevelPrefix}{edgeSettings.GoalSceneIndex}"))
                 return;
             
             edgeSettings.GoalSceneIndex = 0;
@@ -38,7 +39,7 @@ namespace Configurations
 
         private bool SceneExists(string shortName)
         {
-            _lastFullPathChecked = _levelPath + shortName + _levelFileType;
+            _lastFullPathChecked = LevelPath + shortName + LevelFileType;
             var buildIndex = SceneUtility.GetBuildIndexByScenePath(_lastFullPathChecked);
 
             return buildIndex >= 0 && buildIndex <= SceneManager.sceneCountInBuildSettings;
