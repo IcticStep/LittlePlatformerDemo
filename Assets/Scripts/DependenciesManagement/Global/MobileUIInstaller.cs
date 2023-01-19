@@ -20,10 +20,10 @@ namespace DependenciesManagement.Global
         private void CreateMobileControlUI()
         {
             var mobileControls = Container.InstantiatePrefabForComponent<MobileControls>(_mobileUIControlsPrefab);
-            Container
-                .Bind<MobileControls>()
-                .FromInstance(mobileControls)
-                .AsSingle();
+            // Container
+            //     .Bind<MobileControls>()
+            //     .FromInstance(mobileControls)
+            //     .AsSingle();
         }
     }
 }
