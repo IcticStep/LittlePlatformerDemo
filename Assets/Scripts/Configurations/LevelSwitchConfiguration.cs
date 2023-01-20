@@ -44,5 +44,15 @@ namespace Configurations
 
             return buildIndex >= 0 && buildIndex <= SceneManager.sceneCountInBuildSettings;
         }
+
+        public override string ToString()
+        {
+            var result = "EdgeSettings: ";
+
+            foreach (var edgeSetting in EdgeSettings)
+                result += edgeSetting.ToString();
+
+            return result + ".";
+        }
     }
 }

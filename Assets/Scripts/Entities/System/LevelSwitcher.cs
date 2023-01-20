@@ -27,7 +27,13 @@ namespace Entities.System
         private void Init(Scene scene, LoadSceneMode sceneMode)
         {
             InitEdgeActions();
+            SignalStart(scene);
+        }
+
+        private void SignalStart(Scene scene)
+        {
             OnLevelStart?.Invoke();
+            Debug.Log($"Level started. Current scene: {scene.name}");
         }
 
         private void InitEdgeActions()
@@ -38,9 +44,12 @@ namespace Entities.System
 
         public void FinishLevel(Edge edge)
         {
+            Debug.Log($"Finish level requested by {edge.ToString()} edge.");
             var completed = EdgeSettings.Where(s => s.Edge == edge);
             if (!completed.Any())
                 return;
+            
+            Debug.Log("Finish level request is processing...");
 
             foreach (var edgeSettings in completed)
                 if(_edgeActions.ContainsKey(edgeSettings.Action))
@@ -51,14 +60,18 @@ namespace Entities.System
         {
             SetPreviousLevelData(edgeSettings.Edge);
             OnLevelSwitch?.Invoke();
-            SceneManager.LoadScene(GetLevelNameByIndex(edgeSettings.GoalSceneIndex));
+            var levelName = GetLevelNameByIndex(edgeSettings.GoalSceneIndex);
+            Debug.Log($"Level switch. Going to load scene with name {levelName}.");
+            SceneManager.LoadScene(levelName);
         }
 
         private void RestartLevel(EdgeSettings edgeSettings)
         {
             SetPreviousLevelData();
             OnLevelRestart?.Invoke();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log($"Level restart. Going to load scene with build index {goalSceneIndex}.");
+            SceneManager.LoadScene(goalSceneIndex);
         }
 
         private void SetPreviousLevelData(Edge? edge = null)
