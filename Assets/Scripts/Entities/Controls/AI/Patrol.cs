@@ -7,8 +7,8 @@ namespace Entities.Controls.AI
     [RequireComponent(typeof(Mover))]
     public class Patrol : MonoBehaviour
     {
-        [SerializeField] private CollisionDetector _collisionDetector;
-        [SerializeField] private Side _currentDirection;
+        [SerializeField] private CollisionDetector _collisionDetector = default;
+        [SerializeField] private Side _currentDirection = default;
         
         private Mover _mover;
 

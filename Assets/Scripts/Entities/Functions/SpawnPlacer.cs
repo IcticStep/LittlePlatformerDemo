@@ -33,42 +33,42 @@ namespace Entities.Functions
 
         private void DoRestartResetIfNeeded()
         {
-            if (_afterRestart)
-            {
-                _rigidbody.velocity = Vector2.zero;
-                transform.position = _startLevelPosition;
-                _afterRestart = false;
-                return;
-            }
-
-            _startLevelPosition = transform.position;
+            // if (_afterRestart)
+            // {
+            //     _rigidbody.velocity = Vector2.zero;
+            //     transform.position = _startLevelPosition;
+            //     _afterRestart = false;
+            //     return;
+            // }
+            //
+            // _startLevelPosition = transform.position;
         }
 
         private void OnEnable()
         {
-            _levelSwitcher.OnLevelSwitch += SaveSwitchPosition;
-            _levelSwitcher.OnLevelStart += SetSpawn;
-            _levelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
-            _levelSwitcher.OnLevelRestart += MarkRestart;
+            // _levelSwitcher.OnLevelSwitch += SaveSwitchPosition;
+            // _levelSwitcher.OnLevelStart += SetSpawn;
+            // _levelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
+            // _levelSwitcher.OnLevelRestart += MarkRestart;
         }
         private void OnDisable()
         {
-            _levelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
-            _levelSwitcher.OnLevelStart -= SetSpawn;
-            _levelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
-            _levelSwitcher.OnLevelRestart -= MarkRestart;
+            // _levelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
+            // _levelSwitcher.OnLevelStart -= SetSpawn;
+            // _levelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
+            // _levelSwitcher.OnLevelRestart -= MarkRestart;
         }
 
         private void MarkRestart() => _afterRestart = true;
 
-        private void SaveSwitchPosition() => _switchedPosition = transform.position;
+        private void SaveSwitchPosition() => _switchedPosition =  transform.position = Vector3.zero;
 
         private void SetSpawn()
         {
-            if(!NeedPositionReplace())
-                return;
+            // if(!NeedPositionReplace())
+            //     return;
 
-            transform.position = GetSpawnCoordinates();
+            transform.position = Vector3.zero;//GetSpawnCoordinates();
         }
 
         private bool NeedPositionReplace() =>

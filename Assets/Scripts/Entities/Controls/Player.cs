@@ -30,22 +30,24 @@ namespace Entities.Controls
 
         private void OnEnable()
         {
-            EnableInput();
-            _deathMaker.OnDie += DisableInput;
-            _levelSwitcher.OnLevelStart += EnableInput;
+            //EnableInput();
+            // _deathMaker.OnDie += DisableInput;
+            // _levelSwitcher.OnLevelStart += EnableInput;
         }
 
         private void OnDisable()
         {
-            DisableInput();
-            _deathMaker.OnDie -= DisableInput;
-            _levelSwitcher.OnLevelStart -= EnableInput;
+            // DisableInput();
+            // _deathMaker.OnDie -= DisableInput;
+            // _levelSwitcher.OnLevelStart -= EnableInput;
         }
 
         private void FixedUpdate() => _mover.MoveHorizontally(_horizontalMoveRatio);
 
         private void EnableInput()
         {
+            // Debug.Log("[Player] Enable input/ Level Start");
+            
             _input.Enable();
             _input.Gameplay.Move.performed += SetMoveRatio;
             _input.Gameplay.Move.canceled += ResetMoveRatio;
@@ -54,6 +56,7 @@ namespace Entities.Controls
 
         private void DisableInput()
         {
+            Debug.Log("[Player] Disable input");
             _horizontalMoveRatio = default;
             _input.Gameplay.Move.performed -= SetMoveRatio;
             _input.Gameplay.Move.canceled -= ResetMoveRatio;

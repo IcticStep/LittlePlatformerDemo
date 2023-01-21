@@ -1862,7 +1862,7 @@ PrefabInstance:
     - target: {fileID: 5938621439698272830, guid: 6b40a09b2af05db4cab1e83a94f35b7c, type: 3}
       propertyPath: _levelSwitchConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: 46a12accbac63de4e8733a2fd86fceeb, type: 2}
+      objectReference: {fileID: 11400000, guid: c632b7aa91ce7f448a05f6d257605134, type: 2}
     - target: {fileID: 5938621439698272831, guid: 6b40a09b2af05db4cab1e83a94f35b7c, type: 3}
       propertyPath: m_RootOrder
       value: 5

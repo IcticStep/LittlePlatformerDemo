@@ -21,8 +21,8 @@ namespace DependenciesManagement
 
         private void LoadLevelConfiguration()
         {
-            _levelSwitcher.EdgeSettings = _levelSwitchConfiguration.EdgeSettings;
-            Debug.Log($"Loaded level configuration: {_levelSwitchConfiguration}");
+            //_levelSwitcher.EdgeSettings = _levelSwitchConfiguration.EdgeSettings;
+            //Debug.Log($"Loaded level configuration: {_levelSwitchConfiguration}");
         }
     }
 }

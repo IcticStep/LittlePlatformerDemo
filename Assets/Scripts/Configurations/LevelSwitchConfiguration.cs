@@ -17,6 +17,7 @@ namespace Configurations
 
         private string _lastFullPathChecked = "";
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             for (var i = 0; i < EdgeSettings.Count; i++)
@@ -44,7 +45,7 @@ namespace Configurations
 
             return buildIndex >= 0 && buildIndex <= SceneManager.sceneCountInBuildSettings;
         }
-
+#endif
         public override string ToString()
         {
             var result = "EdgeSettings: ";

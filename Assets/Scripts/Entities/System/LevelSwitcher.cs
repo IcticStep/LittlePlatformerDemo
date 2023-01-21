@@ -19,10 +19,10 @@ namespace Entities.System
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
         
-        public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
+        public IReadOnlyList<EdgeSettings> EdgeSettings { set; get; }
 
-        private void Awake() => SceneManager.sceneLoaded += Init;
-        private void OnDestroy() => SceneManager.sceneLoaded -= Init;
+        // private void Awake() => SceneManager.sceneLoaded += Init;
+        // private void OnDestroy() => SceneManager.sceneLoaded -= Init;
 
         private void Init(Scene scene, LoadSceneMode sceneMode)
         {
@@ -44,34 +44,34 @@ namespace Entities.System
 
         public void FinishLevel(Edge edge)
         {
-            Debug.Log($"Finish level requested by {edge.ToString()} edge.");
-            var completed = EdgeSettings.Where(s => s.Edge == edge);
-            if (!completed.Any())
-                return;
-            
-            Debug.Log("Finish level request is processing...");
-
-            foreach (var edgeSettings in completed)
-                if(_edgeActions.ContainsKey(edgeSettings.Action))
-                    _edgeActions[edgeSettings.Action].Invoke(edgeSettings);
+            // Debug.Log($"Finish level requested by {edge.ToString()} edge.");
+            // var completed = EdgeSettings.Where(s => s.Edge == edge);
+            // if (!completed.Any())
+            //     return;
+            //
+            // Debug.Log("Finish level request is processing...");
+            //
+            // foreach (var edgeSettings in completed)
+            //     if(_edgeActions.ContainsKey(edgeSettings.Action))
+            //         _edgeActions[edgeSettings.Action].Invoke(edgeSettings);
         }
 
-        private void SwitchLevel(EdgeSettings edgeSettings)
+        public void SwitchLevel(EdgeSettings edgeSettings)
         {
-            SetPreviousLevelData(edgeSettings.Edge);
-            OnLevelSwitch?.Invoke();
-            var levelName = GetLevelNameByIndex(edgeSettings.GoalSceneIndex);
-            Debug.Log($"Level switch. Going to load scene with name {levelName}.");
-            SceneManager.LoadScene(levelName);
+            // SetPreviousLevelData(edgeSettings.Edge);
+            // OnLevelSwitch?.Invoke();
+            // var levelName = GetLevelNameByIndex(edgeSettings.GoalSceneIndex);
+            // Debug.Log($"Level switch. Going to load scene with name {levelName}.");
+            SceneManager.LoadScene(1);
         }
 
         private void RestartLevel(EdgeSettings edgeSettings)
         {
-            SetPreviousLevelData();
-            OnLevelRestart?.Invoke();
-            var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log($"Level restart. Going to load scene with build index {goalSceneIndex}.");
-            SceneManager.LoadScene(goalSceneIndex);
+            // SetPreviousLevelData();
+            // OnLevelRestart?.Invoke();
+            // var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            // Debug.Log($"Level restart. Going to load scene with build index {goalSceneIndex}.");
+            // SceneManager.LoadScene(goalSceneIndex);
         }
 
         private void SetPreviousLevelData(Edge? edge = null)

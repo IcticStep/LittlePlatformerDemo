@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 5938621439698272830, guid: 6b40a09b2af05db4cab1e83a94f35b7c, type: 3}
       propertyPath: _levelSwitchConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: 4398dc4b1330e5543a7573e2e578eaac, type: 2}
+      objectReference: {fileID: 11400000, guid: 0d36dfd59ebd4454da4e133323222668, type: 2}
     - target: {fileID: 5938621439698272831, guid: 6b40a09b2af05db4cab1e83a94f35b7c, type: 3}
       propertyPath: m_RootOrder
       value: 5

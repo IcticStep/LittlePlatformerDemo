@@ -26,17 +26,17 @@ namespace DependenciesManagement.Global
 
         private void CreateEventSystem()
         {
-            var eventSystem = Container.InstantiatePrefabForComponent<EventSystem>(_eventSystemPrefab);
-            DontDestroyOnLoad(eventSystem);
+            // var eventSystem = Container.InstantiatePrefabForComponent<EventSystem>(_eventSystemPrefab);
+            // DontDestroyOnLoad(eventSystem);
         }
 
         private void BindCamera()
         {
-            var camera = Container.InstantiatePrefabForComponent<Camera>(_mainCameraPrefab, new Vector3(0,0,-10), default, null);
-            Container
-                .Bind<Camera>()
-                .FromInstance(camera)
-                .AsSingle();
+            // var camera = Container.InstantiatePrefabForComponent<Camera>(_mainCameraPrefab, new Vector3(0,0,-10), default, null);
+            // Container
+            //     .Bind<Camera>()
+            //     .FromInstance(camera)
+            //     .AsSingle();
         }
 
         private void BindLevelSwitcher()
