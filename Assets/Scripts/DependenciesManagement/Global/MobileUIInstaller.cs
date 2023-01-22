@@ -17,13 +17,8 @@ namespace DependenciesManagement.Global
             #endif
         }
 
-        private void CreateMobileControlUI()
-        {
-            var mobileControls = Container.InstantiatePrefabForComponent<MobileControls>(_mobileUIControlsPrefab);
-            // Container
-            //     .Bind<MobileControls>()
-            //     .FromInstance(mobileControls)
-            //     .AsSingle();
-        }
+        // ReSharper disable Unity.PerformanceAnalysis
+        private void CreateMobileControlUI() 
+            => Container.InstantiatePrefabForComponent<MobileControls>(_mobileUIControlsPrefab);
     }
 }
