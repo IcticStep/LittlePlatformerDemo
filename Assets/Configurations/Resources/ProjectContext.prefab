@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 9211625828323860487}
   - component: {fileID: -5651710257534038053}
   - component: {fileID: 8446316578690546242}
+  - component: {fileID: 6087493376719448375}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 6087493376719448375}
   - {fileID: -5651710257534038053}
   - {fileID: 8446316578690546242}
   _installerPrefabs: []
@@ -173,6 +175,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mobileUIControlsPrefab: {fileID: 719734498073073639, guid: 2d0161982709b3f43824d5ef13773acc, type: 3}
+--- !u!114 &6087493376719448375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456733682094426598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd5544a7d44447983c02bc44c9df12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interstitialAddShower: {fileID: 3461569279349884640}
 --- !u!1 &3479767313084151070
 GameObject:
   m_ObjectHideFlags: 0

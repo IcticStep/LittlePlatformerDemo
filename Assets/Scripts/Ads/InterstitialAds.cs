@@ -8,6 +8,8 @@ namespace Ads
     {
         [SerializeField] private string _androidAdUnitId = "Interstitial_Android";
         [SerializeField] private string _iOsAdUnitId = "Interstitial_iOS";
+        
+        public event Action OnUnityAdsShowCompleted;
 
         private string _adID;
 
@@ -36,27 +38,27 @@ namespace Ads
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
-            throw new NotImplementedException();
+            OnUnityAdsShowCompleted?.Invoke();
         }
 
         public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
         {
-            throw new NotImplementedException();
+            Debug.Log("Unity add failed to load!");
         }
 
         public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
         {
-            throw new NotImplementedException();
+            Debug.Log("Unity add show failed!");
         }
 
         public void OnUnityAdsShowStart(string placementId)
         {
-            throw new NotImplementedException();
+            Debug.Log("Add started!");
         }
 
         public void OnUnityAdsShowClick(string placementId)
         {
-            throw new NotImplementedException();
+            Debug.Log("Add was clicked!");
         }
 
         public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)

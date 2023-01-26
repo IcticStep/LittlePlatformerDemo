@@ -6,6 +6,7 @@ using Entities.Data;
 using Entities.System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Entities.System
 {
@@ -20,14 +21,27 @@ namespace Entities.System
         public event Action OnLevelRestart;
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
-
         private IInterstitialAddShower _interstitialAddShower;
+        private int _restartSceneIndex;
 
-
+        [Inject]
         private void Construct(IInterstitialAddShower interstitialAddShower)
-            => _interstitialAddShower = interstitialAddShower;
+        {
+            _interstitialAddShower = interstitialAddShower;
+        }
+
         private void Awake() => SceneManager.sceneLoaded += Init;
-        private void OnDestroy() => SceneManager.sceneLoaded -= Init;
+
+        private void Start()
+        {
+            _interstitialAddShower.OnUnityAdsShowCompleted += FinishLevelRestart;
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= Init;
+            _interstitialAddShower.OnUnityAdsShowCompleted -= FinishLevelRestart;
+        }
 
         private void Init(Scene scene, LoadSceneMode sceneMode)
         {
@@ -70,8 +84,12 @@ namespace Entities.System
             SetPreviousLevelData();
             OnLevelRestart?.Invoke();
             var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(goalSceneIndex);
+            _restartSceneIndex = goalSceneIndex;
+            _interstitialAddShower.Show();
         }
+        
+        private void FinishLevelRestart()
+            => SceneManager.LoadScene(_restartSceneIndex);
 
         private void SetPreviousLevelData(Edge? edge = null)
             => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);
