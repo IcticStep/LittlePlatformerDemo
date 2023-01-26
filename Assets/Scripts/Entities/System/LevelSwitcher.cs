@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ads;
 using Entities.Data;
 using Entities.System.Data;
 using UnityEngine;
@@ -12,15 +13,19 @@ namespace Entities.System
     {
         private const string LevelNamePrefix = "Level";
         public PreviousLevel PreviousLevel { get; private set; }
+        public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
 
         public event Action OnLevelStart;
         public event Action OnLevelSwitch;
         public event Action OnLevelRestart;
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
-        
-        public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
 
+        private IInterstitialAddShower _interstitialAddShower;
+
+
+        private void Construct(IInterstitialAddShower interstitialAddShower)
+            => _interstitialAddShower = interstitialAddShower;
         private void Awake() => SceneManager.sceneLoaded += Init;
         private void OnDestroy() => SceneManager.sceneLoaded -= Init;
 
