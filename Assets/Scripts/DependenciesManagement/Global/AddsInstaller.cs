@@ -6,6 +6,7 @@ namespace DependenciesManagement.Global
 {
     public class AddsInstaller : MonoInstaller
     {
+#if (UNITY_ANDROID || UNITY_IOS)
         [SerializeField] private InterstitialAds _interstitialAddShower;
         
         // ReSharper disable Unity.PerformanceAnalysis
@@ -18,5 +19,8 @@ namespace DependenciesManagement.Global
                 .AsSingle()
                 .NonLazy();
         }
+#else
+        public override void InstallBindings() { }        
+#endif
     }
 }

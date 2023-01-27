@@ -21,26 +21,33 @@ namespace Entities.System
         public event Action OnLevelRestart;
 
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
-        private IInterstitialAddShower _interstitialAddShower;
         private int _restartSceneIndex;
+        
+#if (UNITY_ANDROID || UNITY_IOS)
+        private IInterstitialAddShower _interstitialAddShower;
 
         [Inject]
         private void Construct(IInterstitialAddShower interstitialAddShower)
         {
             _interstitialAddShower = interstitialAddShower;
         }
+#endif
 
         private void Awake() => SceneManager.sceneLoaded += Init;
 
         private void Start()
         {
+#if (UNITY_ANDROID || UNITY_IOS)
             _interstitialAddShower.OnUnityAdsShowCompleted += FinishLevelRestart;
+#endif
         }
 
         private void OnDestroy()
         {
             SceneManager.sceneLoaded -= Init;
+#if (UNITY_ANDROID || UNITY_IOS)
             _interstitialAddShower.OnUnityAdsShowCompleted -= FinishLevelRestart;
+#endif
         }
 
         private void Init(Scene scene, LoadSceneMode sceneMode)
@@ -85,7 +92,13 @@ namespace Entities.System
             OnLevelRestart?.Invoke();
             var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
             _restartSceneIndex = goalSceneIndex;
+            
+#if (UNITY_ANDROID || UNITY_IOS)
             _interstitialAddShower.Show();
+            return;
+#else
+            FinishLevelRestart();
+#endif
         }
         
         private void FinishLevelRestart()

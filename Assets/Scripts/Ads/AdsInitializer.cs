@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if (UNITY_IOS || UNITY_ANDROID)
+
+using UnityEngine;
 using UnityEngine.Advertisements;
 
 namespace Ads
@@ -42,3 +44,5 @@ namespace Ads
         }
     }
 }
+
+#endif
