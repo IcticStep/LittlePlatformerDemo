@@ -18,10 +18,17 @@ namespace Ads
 
         private void InitializeAds()
         {
-            _gameId = (Application.platform == RuntimePlatform.IPhonePlayer)
-                ? _iOSGameId
-                : _androidGameId;
+            _gameId = GetApplicationID();
             Advertisement.Initialize(_gameId, _testMode, this);
+        }
+
+        private string GetApplicationID()
+        {
+#if UNITY_ANDROID
+            return _androidGameId;
+#elif UNITY_IOS
+            return _iOSGameId;
+#endif
         }
 
         public void OnInitializationComplete()

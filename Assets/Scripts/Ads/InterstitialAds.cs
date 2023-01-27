@@ -21,9 +21,16 @@ namespace Ads
 
         private void InitializeAdId()
         {
-            _adID = (Application.platform == RuntimePlatform.IPhonePlayer)
-                ? _iOsAdUnitId
-                : _androidAdUnitId;
+            _adID = GetAdID();
+        }
+
+        private string GetAdID()
+        {
+#if UNITY_ANDROID
+            return _androidAdUnitId;
+#elif UNITY_IOS
+            return _iOsAdUnitId;
+#endif
         }
 
         private void Load()
