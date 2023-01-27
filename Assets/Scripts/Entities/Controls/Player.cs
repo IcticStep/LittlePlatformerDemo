@@ -11,7 +11,7 @@ namespace Entities.Controls
     [RequireComponent(typeof(DeathMaker))]
     public class Player : MonoBehaviour
     {
-        private LevelSwitcher _levelSwitcher;
+        private ILevelSwitcher _levelSwitcher;
         private Mover _mover;
         private DeathMaker _deathMaker;
         private Input _input;
@@ -19,7 +19,7 @@ namespace Entities.Controls
         private float _horizontalMoveRatio;
 
         [Inject]
-        public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
+        public void Construct(ILevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
 
         private void Awake()
         {
@@ -44,7 +44,7 @@ namespace Entities.Controls
 
         private void FixedUpdate() => _mover.MoveHorizontally(_horizontalMoveRatio);
 
-        private void EnableInput()
+        public void EnableInput()
         {
             _input.Enable();
             _input.Gameplay.Move.performed += SetMoveRatio;
@@ -52,7 +52,7 @@ namespace Entities.Controls
             _input.Gameplay.Jump.performed += Jump;
         }
 
-        private void DisableInput()
+        public void DisableInput()
         {
             _horizontalMoveRatio = default;
             _input.Gameplay.Move.performed -= SetMoveRatio;

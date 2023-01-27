@@ -8,25 +8,38 @@ using UnityEngine.SceneManagement;
 
 namespace Entities.System
 {
-    public class LevelSwitcher : MonoBehaviour
+    public class LevelSwitcher : MonoBehaviour, ILevelSwitcher
     {
-        private const string LevelNamePrefix = "Level";
-        public PreviousLevel PreviousLevel { get; private set; }
+        private readonly LevelIndexer _levelIndexer = new();
+        
+        public int PreviousLevel { get; private set; }
+        public int GetPreviousLevel() => PreviousLevel;
 
         public event Action OnLevelStart;
         public event Action OnLevelSwitch;
         public event Action OnLevelRestart;
 
-        private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
-        
-        public IReadOnlyList<EdgeSettings> EdgeSettings { set; private get; }
+        public void SwitchLevel(int levelID)
+        {
+            CacheThisLevelData();
+            OnLevelSwitch?.Invoke();
+            var levelName = _levelIndexer.GetLevelNameByIndex(levelID);
+            SceneManager.LoadScene(levelName);
+        }
+
+        public void RestartLevel()
+        {
+            CacheThisLevelData();
+            OnLevelRestart?.Invoke();
+            var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(goalSceneIndex);
+        }
 
         private void Awake() => SceneManager.sceneLoaded += Init;
         private void OnDestroy() => SceneManager.sceneLoaded -= Init;
 
         private void Init(Scene scene, LoadSceneMode sceneMode)
         {
-            InitEdgeActions();
             SignalStart(scene);
         }
 
@@ -34,43 +47,11 @@ namespace Entities.System
         {
             OnLevelStart?.Invoke();
         }
-
-        private void InitEdgeActions()
+        
+        private void CacheThisLevelData()
         {
-            _edgeActions[EdgeAction.Kill] = RestartLevel;
-            _edgeActions[EdgeAction.SwitchLevel] = SwitchLevel;
+            var current = SceneManager.GetActiveScene().name;
+            PreviousLevel = _levelIndexer.GetLevelIndexByName(current);
         }
-
-        public void FinishLevel(Edge edge)
-        {
-            var completed = EdgeSettings.Where(s => s.Edge == edge);
-            if (!completed.Any())
-                return;
-            
-            foreach (var edgeSettings in completed)
-                if(_edgeActions.ContainsKey(edgeSettings.Action))
-                    _edgeActions[edgeSettings.Action].Invoke(edgeSettings);
-        }
-
-        private void SwitchLevel(EdgeSettings edgeSettings)
-        {
-            SetPreviousLevelData(edgeSettings.Edge);
-            OnLevelSwitch?.Invoke();
-            var levelName = GetLevelNameByIndex(edgeSettings.GoalSceneIndex);
-            SceneManager.LoadScene(levelName);
-        }
-
-        private void RestartLevel(EdgeSettings edgeSettings)
-        {
-            SetPreviousLevelData();
-            OnLevelRestart?.Invoke();
-            var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(goalSceneIndex);
-        }
-
-        private void SetPreviousLevelData(Edge? edge = null)
-            => PreviousLevel = new (SceneManager.GetActiveScene().buildIndex, edge);
-
-        private string GetLevelNameByIndex(int index) => LevelNamePrefix + Convert.ToString(index);
     }
 }

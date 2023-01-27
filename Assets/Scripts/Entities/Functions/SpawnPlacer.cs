@@ -1,89 +1,74 @@
 using ClassExtensions;
-using Entities.Data;
+using DependenciesManagement;
 using Entities.System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
-using Edge = Entities.Data.Edge;
 
 namespace Entities.Functions
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class SpawnPlacer : MonoBehaviour
     {
-        [SerializeField] private float _basicEdgeLift = 1f;
-        [SerializeField] private float _topEdgeLift = 2.5f;
-
-        private LevelSwitcher _levelSwitcher;
+        private readonly LevelIndexer _levelIndexer = new();
+        private DoorContainer _doorContainer;
+        private ILevelSwitcher _levelSwitcher;
+        private Camera _camera;
         private Rigidbody2D _rigidbody;
-        private Vector2 _switchedPosition;
         private Vector2 _startLevelPosition;
-        private bool _afterRestart;
+        private Vector2 _defaultSpawn;
         
-        private PreviousLevel? PreviousLevel => _levelSwitcher.PreviousLevel;
+        private int PreviousLevel => _levelSwitcher.GetPreviousLevel();
         
-        private void Awake()
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            SetSpawn();
-        }
+        private void Awake() => _rigidbody = GetComponent<Rigidbody2D>();
+        private void Start() => SetSpawn();
 
         [Inject]
-        public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
-
-        private void DoRestartResetIfNeeded()
+        public void Construct(ILevelSwitcher levelSwitcher, Camera camera)
         {
-            if (_afterRestart)
-            {
-                _rigidbody.velocity = Vector2.zero;
-                transform.position = _startLevelPosition;
-                _afterRestart = false;
-                return;
-            }
-
-            _startLevelPosition = transform.position;
+            _levelSwitcher = levelSwitcher;
+            _camera = camera;
         }
+
+        public void SetDoorContainer(DoorContainer doorContainer) => _doorContainer = doorContainer;
 
         private void OnEnable()
         {
-            _levelSwitcher.OnLevelSwitch += SaveSwitchPosition;
             _levelSwitcher.OnLevelStart += SetSpawn;
-            _levelSwitcher.OnLevelStart += DoRestartResetIfNeeded;
-            _levelSwitcher.OnLevelRestart += MarkRestart;
+            _levelSwitcher.OnLevelSwitch += ForgetDefaultSpawn;
         }
+
         private void OnDisable()
         {
-            _levelSwitcher.OnLevelSwitch -= SaveSwitchPosition;
             _levelSwitcher.OnLevelStart -= SetSpawn;
-            _levelSwitcher.OnLevelStart -= DoRestartResetIfNeeded;
-            _levelSwitcher.OnLevelRestart -= MarkRestart;
+            _levelSwitcher.OnLevelSwitch -= ForgetDefaultSpawn;
         }
 
-        private void MarkRestart() => _afterRestart = true;
-
-        private void SaveSwitchPosition() => _switchedPosition = transform.position;
-
+        public void SetDefaultSpawn(Vector2 position) => _defaultSpawn = position; 
+        private void ForgetDefaultSpawn() => _defaultSpawn = default;
+        
         private void SetSpawn()
         {
-            if(!NeedPositionReplace())
+            var levelSwitched = PreviousLevel != 0 && PreviousLevel != GetActiveSceneIndex();
+            
+            if (levelSwitched)
+            {
+                transform.position = GetSpawnDoorCoordinates();
                 return;
+            }
 
-            transform.position = GetSpawnCoordinates();
+            _rigidbody.velocity = Vector2.zero;
+            transform.position = _defaultSpawn;
         }
 
-        private bool NeedPositionReplace() =>
-            PreviousLevel != null 
-            && PreviousLevel.Value.Id != SceneManager.GetActiveScene().buildIndex
-            && _afterRestart == false;
+        private int GetActiveSceneIndex()
+            => _levelIndexer.GetLevelIndexByName(SceneManager.GetActiveScene().name);
 
         // ReSharper disable once PossibleInvalidOperationException
-        private Vector2 GetSpawnCoordinates() => PreviousLevel.Value.Crossed switch
-            {
-                Edge.Left => _switchedPosition.ReflectX().WithAdjustedX(-_basicEdgeLift),
-                Edge.Right => _switchedPosition.ReflectX().WithAdjustedX(_basicEdgeLift),
-                Edge.Bottom => _switchedPosition.ReflectY().WithAdjustedY(-_basicEdgeLift),
-                Edge.Top => _switchedPosition.ReflectY() + new Vector2(0, _topEdgeLift),
-                _ => _switchedPosition
-            };
+        private Vector2 GetSpawnDoorCoordinates()
+        {
+            var goalDoor = _doorContainer.GetDoorToLevel(PreviousLevel);
+            return goalDoor.transform.position;
+        }
     }
 }

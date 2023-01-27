@@ -176,13 +176,13 @@ GameObject:
   - component: {fileID: 8063006657919568645}
   - component: {fileID: 2178795451174238227}
   - component: {fileID: 7452951592782780953}
-  - component: {fileID: 170049367}
   - component: {fileID: 1923674932152405923}
   - component: {fileID: 4507675311161346742}
   - component: {fileID: 7212586825820188929}
   - component: {fileID: 4573071283424567029}
+  - component: {fileID: -5220127695911452672}
   - component: {fileID: 2396794405796698475}
-  - component: {fileID: 8640163820419582177}
+  - component: {fileID: -6911108148785200592}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -362,20 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca4249d136795a4e832ce4f0e6f1f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basicEdgeLift: 1
-  _topEdgeLift: 2.5
---- !u!114 &170049367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512740614997977972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02214f962fa48aa998cf0ee1e11ba05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1923674932152405923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +423,20 @@ MonoBehaviour:
   _makeJump: 1
   _jumpForce: 75
   _dieFallGravityScale: 1
+--- !u!114 &-5220127695911452672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512740614997977972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d511f2d6d7d2145ade5b1fca7751eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restartYBoundary: -10
+  _updateDelaySeconds: 0.5
 --- !u!114 &2396794405796698475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c809b42642d434eac43c019ccea7318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8640163820419582177
+--- !u!114 &-6911108148785200592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2512740614997977972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f9270eb0f847a98e59082adc972f29, type: 3}
+  m_Script: {fileID: 11500000, guid: fb5f0d720f6a4995bc277ee26bd1a912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2902593782629477396
