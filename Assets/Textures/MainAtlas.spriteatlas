@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c123c318507c6405a869f2f89068cf06, type: 3}
   - {fileID: 21300000, guid: ef131f3830055cd4ba66c5ae6804d9ab, type: 3}
   - {fileID: 21300000, guid: 41aa8a785add652429373cc7db4e9d47, type: 3}
+  - {fileID: 21300000, guid: 39351c78742c9604f9309a59fcccd591, type: 3}
   - {fileID: 21300000, guid: 4b8df3e837c15134e966ef69ce5e536d, type: 3}
   - {fileID: 21300000, guid: d00948e821f5e424ea01b186fe00a588, type: 3}
   - {fileID: 21300000, guid: e2976d09b53264ffbbb9210a1ae1dcc0, type: 3}
@@ -316,6 +317,7 @@ SpriteAtlas:
   - player-hurt-1
   - Dust_03
   - dino-idle3
+  - doorOpen
   - rock-1
   - palm
   - player-jump-1
