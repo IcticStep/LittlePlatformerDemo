@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ads;
+using Ads.Api;
 using Entities.Data;
 using Entities.System.Data;
 using UnityEngine;
@@ -23,31 +23,25 @@ namespace Entities.System
         private readonly Dictionary<EdgeAction, Action<EdgeSettings>> _edgeActions = new();
         private int _restartSceneIndex;
         
-#if (UNITY_ANDROID || UNITY_IOS)
-        private IInterstitialAddShower _interstitialAddShower;
+        private IInterstitialAdShower _interstitialAdShower;
 
         [Inject]
-        private void Construct(IInterstitialAddShower interstitialAddShower)
+        private void Construct(IInterstitialAdShower interstitialAdShower)
         {
-            _interstitialAddShower = interstitialAddShower;
+            _interstitialAdShower = interstitialAdShower;
         }
-#endif
 
         private void Awake() => SceneManager.sceneLoaded += Init;
 
         private void Start()
         {
-#if (UNITY_ANDROID || UNITY_IOS)
-            _interstitialAddShower.OnUnityAdsShowCompleted += FinishLevelRestart;
-#endif
+            _interstitialAdShower.OnAdShowCompleted += FinishLevelRestart;
         }
 
         private void OnDestroy()
         {
             SceneManager.sceneLoaded -= Init;
-#if (UNITY_ANDROID || UNITY_IOS)
-            _interstitialAddShower.OnUnityAdsShowCompleted -= FinishLevelRestart;
-#endif
+            _interstitialAdShower.OnAdShowCompleted -= FinishLevelRestart;
         }
 
         private void Init(Scene scene, LoadSceneMode sceneMode)
@@ -93,12 +87,7 @@ namespace Entities.System
             var goalSceneIndex = SceneManager.GetActiveScene().buildIndex;
             _restartSceneIndex = goalSceneIndex;
             
-#if (UNITY_ANDROID || UNITY_IOS)
-            _interstitialAddShower.Show();
-            return;
-#else
-            FinishLevelRestart();
-#endif
+            _interstitialAdShower.Show();
         }
         
         private void FinishLevelRestart()

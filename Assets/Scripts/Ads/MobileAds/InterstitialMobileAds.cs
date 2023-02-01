@@ -1,21 +1,22 @@
 ﻿#if (UNITY_IOS || UNITY_ANDROID)
 
 using System;
+using Ads.Api;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-namespace Ads
+namespace Ads.MobileAds
 {
-    public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener, IInterstitialAddShower
+    public class InterstitialMobileAds : IUnityAdsLoadListener, IUnityAdsShowListener, IInterstitialAdShower
     {
-        [SerializeField] private string _androidAdUnitId = "Interstitial_Android";
-        [SerializeField] private string _iOsAdUnitId = "Interstitial_iOS";
+        private string AndroidAdUnitId = "Interstitial_Android";
+        private string IOsAdUnitId = "Interstitial_iOS";
         
-        public event Action OnUnityAdsShowCompleted;
+        public event Action OnAdShowCompleted;
 
         private string _adID;
 
-        private void Awake()
+        public InterstitialMobileAds()
         {
             InitializeAdId();
             Load();
@@ -29,9 +30,9 @@ namespace Ads
         private string GetAdID()
         {
 #if UNITY_ANDROID
-            return _androidAdUnitId;
+            return AndroidAdUnitId;
 #elif UNITY_IOS
-            return _iOsAdUnitId;
+            return IOsAdUnitId;
 #endif
         }
 
@@ -47,7 +48,7 @@ namespace Ads
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
-            OnUnityAdsShowCompleted?.Invoke();
+            OnAdShowCompleted?.Invoke();
         }
 
         public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)

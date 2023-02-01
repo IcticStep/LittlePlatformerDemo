@@ -1,35 +1,30 @@
 ﻿#if (UNITY_IOS || UNITY_ANDROID)
-
+using Ads.Api;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-namespace Ads
+namespace Ads.MobileAds
 {
-    public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
+    public class UnityAdsInitializer : BaseAdsInitializer, IUnityAdsInitializationListener
     {
-        [SerializeField] private string _androidGameId = "5137069";
-        [SerializeField] private string _iOSGameId = "5137068";
-        [SerializeField] private bool _testMode = true;
+        private const string AndroidGameId = "5137069";
+        private const string IOSGameId = "5137068";
+        private const bool TestMode = true;
         
         private string _gameId;
 
-        private void Awake()
-        {
-            InitializeAds();
-        }
-
-        private void InitializeAds()
+        public override void InitializeAds()
         {
             _gameId = GetApplicationID();
-            Advertisement.Initialize(_gameId, _testMode, this);
+            Advertisement.Initialize(_gameId, TestMode, this);
         }
 
         private string GetApplicationID()
         {
 #if UNITY_ANDROID
-            return _androidGameId;
+            return AndroidGameId;
 #elif UNITY_IOS
-            return _iOSGameId;
+            return IOSGameId;
 #endif
         }
 

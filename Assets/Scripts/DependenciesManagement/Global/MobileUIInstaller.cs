@@ -1,7 +1,5 @@
 using Entities.Controls;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace DependenciesManagement.Global

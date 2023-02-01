@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2615361646696128962}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3464063087253660912
 MonoBehaviour:
@@ -111,7 +111,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2623122777651190479}
-  - {fileID: 2640607402527739988}
   - {fileID: 4130535692118975594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -187,69 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd5544a7d44447983c02bc44c9df12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interstitialAddShower: {fileID: 3461569279349884640}
---- !u!1 &3479767313084151070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2640607402527739988}
-  - component: {fileID: 26241720039822138}
-  - component: {fileID: 3461569279349884640}
-  m_Layer: 0
-  m_Name: AdsPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2640607402527739988
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3479767313084151070}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2615361646696128962}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &26241720039822138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3479767313084151070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93addad1f4044ed1bace7585b9896140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidGameId: 5137069
-  _iOSGameId: 5137068
-  _testMode: 1
---- !u!114 &3461569279349884640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3479767313084151070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4fc46ef74944c41b8341f749d425e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidAdUnitId: Interstitial_Android
-  _iOsAdUnitId: Interstitial_iOS
 --- !u!1001 &3288382899965707120
 PrefabInstance:
   m_ObjectHideFlags: 0
