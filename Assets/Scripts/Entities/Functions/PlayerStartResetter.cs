@@ -10,9 +10,9 @@ namespace Entities.Functions
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(DeathMaker))]
     [RequireComponent(typeof(FoxViewer))]
-    public class PlayerAfterDeathReset : MonoBehaviour
+    public class PlayerStartResetter : MonoBehaviour
     {
-        private LevelSwitcher _levelSwitcher;
+        private ILevelSwitcher _levelSwitcher;
         private Rigidbody2D _rigidbody;
         private DeathMaker _deathMaker;
         private FoxViewer _foxViewer;
@@ -22,7 +22,7 @@ namespace Entities.Functions
         private List<Collider2D> _attachedColliders;
 
         [Inject]
-        public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
+        public void Construct(ILevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
 
         private void Awake()
         {

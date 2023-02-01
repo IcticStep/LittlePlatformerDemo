@@ -13,12 +13,12 @@ namespace Entities.Viewers
         [SerializeField] private float _flyingUpDistance = 2;
         [SerializeField] private float _flyingUpTime = 0.4f;
 
-        private LevelSwitcher _levelSwitcher;
+        private ILevelSwitcher _levelSwitcher;
         private CollectableItem _collectableItem;
         private Sequence _flyingToDestroy;
         
         [Inject]
-        private void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
+        private void Construct(ILevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
         
         private void OnEnable()
         {

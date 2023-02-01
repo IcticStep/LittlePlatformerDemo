@@ -35,7 +35,8 @@ namespace DependenciesManagement.Global
         {
             var levelSwitcher = Container.InstantiatePrefabForComponent<LevelSwitcher>(_levelSwitcherPrefab);
             Container
-                .Bind<LevelSwitcher>()
+                .Bind<ILevelSwitcher>()
+                .To<LevelSwitcher>()
                 .FromInstance(levelSwitcher)
                 .AsSingle();
         }
@@ -47,11 +48,6 @@ namespace DependenciesManagement.Global
                 .Bind<Player>()
                 .FromInstance(player)
                 .AsSingle();
-            
-            var offCameraDetector = player.GetComponent<OffCameraDetector>();
-            Container
-                .Bind<OffCameraDetector>()
-                .FromInstance(offCameraDetector);
         }
     }
 }

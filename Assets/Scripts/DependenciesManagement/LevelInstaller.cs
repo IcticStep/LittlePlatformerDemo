@@ -1,27 +1,33 @@
-using Configurations;
-using Entities.System;
-using UnityEngine;
+using Entities.Controls;
+using Entities.Functions;
 using Zenject;
 
 namespace DependenciesManagement
 {
     public class LevelInstaller : MonoInstaller
     {
-        [SerializeField] private LevelSwitchConfiguration _levelSwitchConfiguration;
-        private LevelSwitcher _levelSwitcher;
+
+        private Player _player;
 
         [Inject]
-        public void Construct(LevelSwitcher levelSwitcher) => _levelSwitcher = levelSwitcher;
+        public void Construct(Player player) => _player = player;
         
         // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
-            LoadLevelConfiguration();
+            BindDoorContainer();
         }
 
-        private void LoadLevelConfiguration()
+        private void BindDoorContainer()
         {
-            _levelSwitcher.EdgeSettings = _levelSwitchConfiguration.EdgeSettings;
+            var doorContainer = new DoorContainer();
+            Container
+                .Bind<DoorContainer>()
+                .FromInstance(doorContainer)
+                .AsSingle();
+
+            var playerPlacer = _player.GetComponent<SpawnPlacer>();
+            playerPlacer.SetDoorContainer(doorContainer);
         }
     }
 }
