@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Ads.Api;
-using Entities.Data;
-using Entities.System.Data;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -14,7 +9,7 @@ namespace Entities.System
     public class LevelSwitcher : MonoBehaviour, ILevelSwitcher
     {
         public int PreviousLevel { get; private set; }
-        public int GetPreviousLevel() => PreviousLevel;
+        public int CurrentLevel { get; private set; }
 
         public event Action OnLevelStart;
         public event Action OnLevelSwitch;
@@ -29,20 +24,23 @@ namespace Entities.System
         {
             _interstitialAdShower = interstitialAdShower;
         }
-
-        private void Start() => _interstitialAdShower.OnAdShowCompleted += FinishLevelRestart;
-
-        private void Awake() => SceneManager.sceneLoaded += Init;
         
+        private void Start() => _interstitialAdShower.OnAdShowCompleted += FinishLevelRestart;
+        
+        private void Awake() => SceneManager.sceneLoaded += Init;
+
         private void OnDestroy()
         {
             SceneManager.sceneLoaded -= Init;
             _interstitialAdShower.OnAdShowCompleted -= FinishLevelRestart;
         }
 
+        public int GetPreviousLevel() => PreviousLevel;
+        public int GetCurrentLevel() => CurrentLevel;
+
         public void SwitchLevel(int levelID)
         {
-            CacheThisLevelData();
+            UpdateLevelCache();
             OnLevelSwitch?.Invoke();
             var levelName = _levelIndexer.GetLevelNameByIndex(levelID);
             
@@ -51,24 +49,29 @@ namespace Entities.System
 
         public void RestartLevel()
         {
-            CacheThisLevelData();
+            UpdateLevelCache();
             OnLevelRestart?.Invoke();
             _restartSceneIndex = SceneManager.GetActiveScene().buildIndex;
             
             _interstitialAdShower.Show();
         }
-        
-        private void FinishLevelRestart()
-            => SceneManager.LoadScene(_restartSceneIndex);
 
-        private void Init(Scene scene, LoadSceneMode sceneMode) => SignalStart(scene);
+        private void Init(Scene scene, LoadSceneMode sceneMode)
+        {
+            CurrentLevel = GetCurrentLevelID();
+            SignalStart(scene);
+        }
+
+        private void UpdateLevelCache() => PreviousLevel = GetCurrentLevelID();
+
+        private void FinishLevelRestart() => SceneManager.LoadScene(_restartSceneIndex);
 
         private void SignalStart(Scene scene) => OnLevelStart?.Invoke();
-
-        private void CacheThisLevelData()
+        
+        private int GetCurrentLevelID()
         {
-            var current = SceneManager.GetActiveScene().name;
-            PreviousLevel = _levelIndexer.GetLevelIndexByName(current);
+            var currentScene = SceneManager.GetActiveScene().name;
+            return _levelIndexer.GetLevelIndexByName(currentScene);
         }
     }
 }

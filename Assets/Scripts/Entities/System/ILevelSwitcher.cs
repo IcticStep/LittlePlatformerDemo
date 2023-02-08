@@ -9,6 +9,7 @@ namespace Entities.System
         public event Action OnLevelRestart;
 
         public int GetPreviousLevel();
+        public int GetCurrentLevel();
         
         /// <summary>
         /// Loads new level in current stream.
