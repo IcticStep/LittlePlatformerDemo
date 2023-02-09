@@ -1,3 +1,4 @@
+using System;
 using Collectables;
 using Entities.Controls;
 using Entities.Functions;
@@ -45,10 +46,9 @@ namespace DependenciesManagement
         private void BindSaver()
         {
             Container
-                .Bind<SceneSaver>()
-                .WithId(SaveSettings.SceneSaverID)
-                .FromNew()
+                .BindInterfacesAndSelfTo<SceneSaver>()
                 .AsSingle()
+                .WithConcreteId(SaveSettings.SceneSaverID)
                 .NonLazy();
         }
     }

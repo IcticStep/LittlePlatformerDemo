@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using System;
+using Zenject;
 using System.IO;
 using Collectables;
 using Newtonsoft.Json;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Entities.System.Savers
 {
-    public class SceneSaver : ISaver
+    public class SceneSaver : ISaver, IDisposable
     {
         private ILevelSwitcher _levelSwitcher;
         private CollectablesContainer _collectablesContainer;
@@ -26,7 +27,7 @@ namespace Entities.System.Savers
             _levelSwitcher.OnLevelSwitch += Save;
         }
 
-        ~SceneSaver()
+        public void Dispose()
         {
             _levelSwitcher.OnLevelStart -= Load;
             _levelSwitcher.OnLevelSwitch -= Save;
@@ -82,6 +83,11 @@ namespace Entities.System.Savers
             var currentLevel = _levelSwitcher.GetCurrentLevel();
             var folder = GetLevelFolderPath();
             return folder + SaveSettings.SceneSaveName + currentLevel + SaveSettings.SaveFileExtension;
+        }
+
+        private void ReleaseUnmanagedResources()
+        {
+            // TODO release unmanaged resources here
         }
     }
 }
