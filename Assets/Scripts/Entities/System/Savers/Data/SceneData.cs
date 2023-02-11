@@ -2,6 +2,6 @@
 {
     public class SceneData
     {
-        public bool Collectables { get; set; }
+        public bool[] Collectables;
     }
 }

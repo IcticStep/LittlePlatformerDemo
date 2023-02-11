@@ -2,22 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ba977c2-8160-4bf0-82b8-40428dcf48b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/ProjectData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/ProjectData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/ProjectSaver.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/ProjectSaver.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LittlePlatformer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LittlePlatformer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch3.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch4.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch4.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch5.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configurations/LevelSwitch/LevelSwitch5.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Data/Edge.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Data/Edge.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Data/PreviousLevel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Data/PreviousLevel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configurations/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configurations/Resources/ProjectContext.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DependenciesManagement/DoorContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DependenciesManagement/DoorContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DependenciesManagement/Global/BootstrapInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DependenciesManagement/Global/BootstrapInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DependenciesManagement/LevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DependenciesManagement/LevelInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Functions/SpawnPlacer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Functions/SpawnPlacer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/LevelSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/LevelSwitcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/SceneData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/SceneData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/SceneData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/SceneData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/SaveSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/SaveSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/SaveSettings.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/Data/SaveSettings.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/SceneData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/SceneData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/SceneSaver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/SceneSaver.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
@@ -33,8 +36,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63965ae56af7489797f355b7c1211ab281aa00/21/474f8bef/BuildPipelineInterfaces.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63965ae56af7489797f355b7c1211ab281aa00/b4/ccb97f4a/EditorApplication.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/30/e2ff8690/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/6a/e83445a0/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/72/37521de0/ReflectionProbe.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/92/3a0a0b51/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/9f/ba279d70/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/a3/60840a07/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/685c48cf8f0b48abb797275c046dda6a158a00/dc/3ffc6341/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,7 +57,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.051861703&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.034346104&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -88,10 +95,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21856">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="21856" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -114,7 +121,9 @@
       <workItem from="1675796378215" duration="747000" />
       <workItem from="1675877018315" duration="4301000" />
       <workItem from="1676052742633" duration="3000" />
-      <workItem from="1676052946393" duration="370000" />
+      <workItem from="1676052946393" duration="8679000" />
+      <workItem from="1676118623720" duration="677000" />
+      <workItem from="1676127991373" duration="5161000" />
     </task>
     <servers />
   </component>
@@ -130,69 +139,30 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Collectables/CollectablesContainer.cs</url>
-          <line>21</line>
-          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Collectables\CollectablesContainer.cs" initialLine="21" containingFunctionPresentation="method 'SetItemStates'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Entities/System/LevelSwitcher.cs</url>
+          <line>23</line>
+          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Entities\System\LevelSwitcher.cs" initialLine="27" containingFunctionPresentation="method 'Start'">
             <startOffsets>
-              <option value="481" />
+              <option value="719" />
             </startOffsets>
             <endOffsets>
-              <option value="520" />
+              <option value="780" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Collectables/CollectablesContainer.cs</url>
-          <line>27</line>
-          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Collectables\CollectablesContainer.cs" initialLine="27" containingFunctionPresentation="method 'SetItemStates'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Entities/System/Savers/ProjectSaver.cs</url>
+          <line>76</line>
+          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Entities\System\Savers\ProjectSaver.cs" initialLine="76" containingFunctionPresentation="method 'RestoreProjectState'">
             <startOffsets>
-              <option value="711" />
+              <option value="2227" />
             </startOffsets>
             <endOffsets>
-              <option value="712" />
+              <option value="2281" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Collectables/CollectablesContainer.cs</url>
-          <line>11</line>
-          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Collectables\CollectablesContainer.cs" initialLine="11" containingFunctionPresentation="method 'Awake'">
-            <startOffsets>
-              <option value="219" />
-            </startOffsets>
-            <endOffsets>
-              <option value="271" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Collectables/CollectablesContainer.cs</url>
-          <line>16</line>
-          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Collectables\CollectablesContainer.cs" initialLine="16" containingFunctionPresentation="method 'GetItemStates'">
-            <startOffsets>
-              <option value="343" />
-            </startOffsets>
-            <endOffsets>
-              <option value="398" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Collectables/CollectablesContainer.cs</url>
-          <line>26</line>
-          <properties documentPath="D:\Development\Unity\LittlePlatformer\Assets\Scripts\Collectables\CollectablesContainer.cs" initialLine="26" containingFunctionPresentation="method 'SetItemStates'">
-            <startOffsets>
-              <option value="701" />
-            </startOffsets>
-            <endOffsets>
-              <option value="702" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

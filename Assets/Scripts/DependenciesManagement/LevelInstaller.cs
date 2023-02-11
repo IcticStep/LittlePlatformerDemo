@@ -3,6 +3,7 @@ using Collectables;
 using Entities.Controls;
 using Entities.Functions;
 using Entities.System.Savers;
+using Entities.System.Savers.Data;
 using Zenject;
 
 namespace DependenciesManagement

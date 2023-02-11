@@ -2,6 +2,7 @@
 using Zenject;
 using System.IO;
 using Collectables;
+using Entities.System.Savers.Data;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -83,11 +84,6 @@ namespace Entities.System.Savers
             var currentLevel = _levelSwitcher.GetCurrentLevel();
             var folder = GetLevelFolderPath();
             return folder + SaveSettings.SceneSaveName + currentLevel + SaveSettings.SaveFileExtension;
-        }
-
-        private void ReleaseUnmanagedResources()
-        {
-            // TODO release unmanaged resources here
         }
     }
 }
