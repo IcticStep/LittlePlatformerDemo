@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -5,17 +6,24 @@ namespace Collectables
 {
     public class CollectablesContainer : MonoBehaviour
     {
+        public event Action OnAnyCollected;
         private CollectableItem[] _items;
 
         private void Awake()
         {
             _items = GetComponentsInChildren<CollectableItem>();
+
+            foreach (var item in _items)
+                item.OnCollected += SignalCollected;
         }
 
-        public bool[] GetItemStates()
+        private void OnDestroy()
         {
-            return _items.Select(item => item.Collected).ToArray();
+            foreach (var item in _items)
+                item.OnCollected -= SignalCollected;
         }
+        
+        public bool[] GetItemStates() => _items.Select(item => item.Collected).ToArray();
 
         public void SetItemStates(bool[] states)
         {
@@ -26,5 +34,7 @@ namespace Collectables
                 current.gameObject.SetActive(!current.Collected);
             }
         }
+
+        private void SignalCollected() => OnAnyCollected?.Invoke();
     }
 }

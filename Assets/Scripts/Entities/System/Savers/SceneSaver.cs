@@ -25,13 +25,13 @@ namespace Entities.System.Savers
         private void Init()
         {
             _levelSwitcher.OnLevelStart += Load;
-            _levelSwitcher.OnLevelSwitch += Save;
+            _collectablesContainer.OnAnyCollected += Save;
         }
 
         public void Dispose()
         {
             _levelSwitcher.OnLevelStart -= Load;
-            _levelSwitcher.OnLevelSwitch -= Save;
+            _collectablesContainer.OnAnyCollected -= Save;
         }
 
         public void Save()
