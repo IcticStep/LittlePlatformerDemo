@@ -7,12 +7,12 @@ namespace Entities.System.Savers.Data
     public class ProjectData
     {
         [JsonProperty] public int LevelID;
-        [JsonProperty] private (float X, float Y) _playerPosition;
+        [JsonProperty] private SerializableVector2 _playerPosition;
         
         public Vector2 PlayerPosition
         {
             get => new(_playerPosition.X, _playerPosition.Y);
-            set => _playerPosition = (value.x, value.y);
+            set => _playerPosition = new(value.x, value.y);
         }
     }
 }
