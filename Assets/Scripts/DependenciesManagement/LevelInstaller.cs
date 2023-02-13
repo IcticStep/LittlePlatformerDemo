@@ -1,12 +1,15 @@
+using System;
+using Collectables;
 using Entities.Controls;
 using Entities.Functions;
+using Entities.System.Savers;
+using Entities.System.Savers.Data;
 using Zenject;
 
 namespace DependenciesManagement
 {
     public class LevelInstaller : MonoInstaller
     {
-
         private Player _player;
 
         [Inject]
@@ -16,6 +19,17 @@ namespace DependenciesManagement
         public override void InstallBindings()
         {
             BindDoorContainer();
+            BindCollectablesContainer();
+            BindSaver();
+        }
+
+        private void BindCollectablesContainer()
+        {
+            var collectablesContainer = FindObjectOfType<CollectablesContainer>();
+            Container
+                .Bind<CollectablesContainer>()
+                .FromInstance(collectablesContainer)
+                .AsSingle();
         }
 
         private void BindDoorContainer()
@@ -28,6 +42,15 @@ namespace DependenciesManagement
 
             var playerPlacer = _player.GetComponent<SpawnPlacer>();
             playerPlacer.SetDoorContainer(doorContainer);
+        }
+
+        private void BindSaver()
+        {
+            Container
+                .BindInterfacesAndSelfTo<SceneSaver>()
+                .AsSingle()
+                .WithConcreteId(SaveSettings.SceneSaverID)
+                .NonLazy();
         }
     }
 }

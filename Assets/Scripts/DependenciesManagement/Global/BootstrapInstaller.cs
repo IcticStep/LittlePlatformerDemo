@@ -1,6 +1,7 @@
 using Entities.Controls;
-using Entities.Functions;
 using Entities.System;
+using Entities.System.Savers;
+using Entities.System.Savers.Data;
 using UnityEngine;
 using Zenject;
 
@@ -21,6 +22,7 @@ namespace DependenciesManagement.Global
             BindCamera();
             BindLevelSwitcher();
             BindPlayer();
+            BindSaver();
         }
 
         private void BindCamera()
@@ -48,6 +50,15 @@ namespace DependenciesManagement.Global
                 .Bind<Player>()
                 .FromInstance(player)
                 .AsSingle();
+        }
+        
+        private void BindSaver()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ProjectSaver>()
+                .AsSingle()
+                .WithConcreteId(SaveSettings.GlobalSaverID)
+                .NonLazy();
         }
     }
 }
