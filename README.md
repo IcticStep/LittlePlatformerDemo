@@ -1,6 +1,7 @@
 # LittlePlatformerDemo
 ## Overview
 Small demo of a 2D platformer game. Technologies: Unity, Unity ads, Extenject(Zenject), DoTween, UniRx, LunarConsole, Newtonesoft Json.
+
 ![game screenshot](https://github.com/IcticStep/LittlePlatformerDemo/assets/59373161/6bbd3118-2142-442e-b933-be2d702f9dbe)
 
 
