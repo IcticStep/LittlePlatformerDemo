@@ -1,18 +1,16 @@
-﻿#if UNITY_WEBGL
-using System;
+﻿using System;
 using Ads.Api;
 using UnityEngine;
 
-namespace Ads.WebGLAds
+namespace Ads.None
 {
-    public class InterstitialWebGLAds : IInterstitialAdShower
+    public class InterstitialNoneAds : IInterstitialAdShower
     {
         public event Action OnAdShowCompleted;
         public void Show()
         {
-            Debug.Log("WebGL ADS show");
+            Debug.Log("Ad could be shown here.");
             OnAdShowCompleted?.Invoke();
         }
     }
 }
-#endif

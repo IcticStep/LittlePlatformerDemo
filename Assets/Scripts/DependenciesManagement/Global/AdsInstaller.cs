@@ -1,5 +1,7 @@
 ﻿using System;
 using Ads.Api;
+using Ads.None;
+using UnityEngine;
 #if (UNITY_IOS || UNITY_ANDROID)
 using Ads.MobileAds;
 #elif UNITY_WEBGL
@@ -15,7 +17,7 @@ namespace DependenciesManagement.Global
         public override void InstallBindings()
         {
 #if (!UNITY_IOS && !UNITY_ANDROID && !UNITY_WEBGL)
-            throw new Exception("Don't have ads for this platform");
+            Debug.Log("Don't have ads for this platform. Ads won't be shown.");
 #endif
             BindAdInitializer();
             BindAdShower();
@@ -29,6 +31,8 @@ namespace DependenciesManagement.Global
                 .To<UnityAdsInitializer>()
 #elif UNITY_WEBGL
                 .To<WebGLAdsInitializer>()
+#else
+                .To<NoneAdsInitializer>()
 #endif
                 .AsSingle()
                 .NonLazy();
@@ -42,6 +46,8 @@ namespace DependenciesManagement.Global
                 .To<InterstitialMobileAds>()
 #elif UNITY_WEBGL
                 .To<InterstitialWebGLAds>()
+#else
+                .To<InterstitialNoneAds>()
 #endif
                 .AsSingle()
                 .NonLazy();
