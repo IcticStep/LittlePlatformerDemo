@@ -11,7 +11,11 @@ namespace Collectables
 
         private Collider2D _collider;
 
-        private void Awake() => _collider = GetComponent<Collider2D>();
+        private void Awake()
+        {
+            _collider = GetComponent<Collider2D>();
+            Init();
+        }
 
         public void Collect()
         {
@@ -23,7 +27,7 @@ namespace Collectables
             OnCollected?.Invoke();
         }
 
-        protected virtual void OnCollection()
+        protected virtual void Init()
         {
             
         }
