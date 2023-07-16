@@ -2,6 +2,7 @@ using System;
 using Collectables;
 using Entities.Controls;
 using Entities.Functions;
+using Entities.System;
 using Entities.System.Savers;
 using Entities.System.Savers.Data;
 using Zenject;
@@ -13,8 +14,9 @@ namespace DependenciesManagement
         private Player _player;
 
         [Inject]
-        public void Construct(Player player) => _player = player;
-        
+        public void Construct(Player player) => 
+            _player = player;
+
         // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
