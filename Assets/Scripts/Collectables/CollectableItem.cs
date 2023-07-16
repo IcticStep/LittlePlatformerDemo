@@ -22,5 +22,10 @@ namespace Collectables
             _collider.enabled = false;
             OnCollected?.Invoke();
         }
+
+        protected virtual void OnCollection()
+        {
+            
+        }
     }
 }
